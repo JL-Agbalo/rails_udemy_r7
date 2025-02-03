@@ -26,4 +26,15 @@ class HomeController < ApplicationController
     def showDateTimeInfo
     @currentTime = Time.now
     end
+
+    def conditionalRendering
+    @data = {
+        name: "John Doe",
+        visible: true,
+        logged_in: true,
+        country_code: "US",
+        work_experience: 5,
+        state_code: "CA"
+    }
+    end
 end

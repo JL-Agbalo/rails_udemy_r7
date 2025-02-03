@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get "home/getQueryStringValues" => "home#getQueryStringValues"
   get "home/getPassDataToViews" => "home#getPassDataToViews"
   get "home/showDateTimeInfo" => "home#showDateTimeInfo"
+  get "home/conditionalRendering" => "home#conditionalRendering"
 end

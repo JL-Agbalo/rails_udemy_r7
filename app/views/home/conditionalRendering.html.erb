@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <% if @data[:visible] %>
+        <h1 class="text-center">Welcome, <%= @data[:name] %>!</h1>
+        
+        <% if @data[:logged_in] %>
+            <p class="alert alert-success text-center">You are logged in.</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Country</th>
+                                <td><%= @data[:country_code] %></td>
+                            </tr>
+                            <tr>
+                                <th>State</th>
+                                <td><%= @data[:state_code] %></td>
+                            </tr>
+                            <tr>
+                                <th>Work Experience</th>
+                                <td><%= @data[:work_experience] %> years</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <% else %>
+            <p class="alert alert-warning text-center">Please log in to continue.</p>
+        <% end %>
+    <% else %>
+        <p class="alert alert-info text-center">Data is not visible.</p>
+    <% end %>
+</div>
