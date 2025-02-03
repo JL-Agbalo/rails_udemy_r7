@@ -13,4 +13,10 @@ Rails.application.routes.draw do
   get "home/conditionalRendering" => "home#conditionalRendering"
   get "home/loopThoughArrays" => "home#loopThoughArrays"
   get "home/index" => "home#index"
+  get "home/load_users" => "home#load_users"
+  get "home/load_users_wimage" => "home#load_users_wimage"
+  get "home/load_user_details/:id" => "home#load_user_details", as: :load_user_details
+  get "home/show_user_details" => "home#show_user_details"
+  
+
 end

@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <h2>User List</h2>
+    <div class="d-flex flex-wrap">
+      <% @users.each do |user| %>
+        <div class="card m-2 p-2" style="width: 200px">
+          <img src="<%= @image %>" class="card-img-top" alt="User Image">
+          <div class="card-header">
+            <h5 class="card-title"><%= user["id"] %></h5>
+          </div>
+          <div class="card-body">
+            <dl>
+              <dt>First Name</dt>
+              <dd><%= user["name"]["firstname"] %></dd>
+              <dt>Last Name</dt>
+              <dd><%= user["name"]["lastname"] %></dd>  
+              <dt>Email</dt>
+              <dd><%= user["email"] %></dd>
+            </dl>
+          </div>
+        </div> 
+      <% end %>
+    </div>
+</div>
