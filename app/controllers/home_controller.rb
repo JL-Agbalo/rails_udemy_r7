@@ -1,4 +1,21 @@
 class HomeController < ApplicationController
+    def index  
+        # Log a debug message
+        Rails.logger.debug "This is a debug message"
+
+        # Log an info message
+        Rails.logger.info "This is an info message"
+
+        # Log a warning message
+        Rails.logger.warn "This is a warn message"
+
+        # Log an error message
+        Rails.logger.error "This is an error message"
+
+        # Log a fatal message
+        Rails.logger.fatal "This is a fatal message"
+    end 
+
     def getQueryStringValues
         message = ""
         if params[:message]
@@ -36,5 +53,17 @@ class HomeController < ApplicationController
         work_experience: 5,
         state_code: "CA"
     }
+    end
+
+    def loopThoughArrays
+        # console
+    @products = [
+        { name: "MacBook Pro", brand: "Apple", processor: "M1", ram: "16GB", storage: "512GB SSD", price: 2399, quantity: 10 },
+        { name: "XPS 13", brand: "Dell", processor: "Intel i7", ram: "16GB", storage: "1TB SSD", price: 1499, quantity: 15 },
+        { name: "ThinkPad X1 Carbon", brand: "Lenovo", processor: "Intel i7", ram: "16GB", storage: "512GB SSD", price: 1799, quantity: 8 },
+        { name: "Spectre x360", brand: "HP", processor: "Intel i7", ram: "16GB", storage: "1TB SSD", price: 1599, quantity: 12 },
+        { name: "Surface Laptop 4", brand: "Microsoft", processor: "AMD Ryzen 7", ram: "16GB", storage: "512GB SSD", price: 1299, quantity: 20 }
+    ]
+    # debugger
     end
 end

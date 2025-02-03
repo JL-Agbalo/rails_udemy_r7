@@ -1,0 +1,27 @@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Processor</th>
+            <th>RAM</th>
+            <th>Storage</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @products.each do |product| %>
+            <tr>
+                <td><%= product[:name] %></td>
+                <td><%= product[:brand] %></td>
+                <td><%= product[:processor] %></td>
+                <td><%= product[:ram] %></td>
+                <td><%= product[:storage] %></td>
+                <td><%= number_to_currency(product[:price]) %></td>
+                <td><%= product[:quantity] %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
