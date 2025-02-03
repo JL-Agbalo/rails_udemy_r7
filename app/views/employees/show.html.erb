@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <h1 class="text-center">Employee Details</h1>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <h2><%= @employee.firstname %> <%= @employee.lastname %></h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Phone Number:</strong> <%= @employee.phone_number %></p>
+      <p><strong>Has Passport:</strong> <%= @employee.haspassport ? 'Yes' : 'No' %></p>
+      <p><strong>Salary:</strong> <%= number_to_currency(@employee.salary) %></p>
+      <p><strong>Notes:</strong> <%= @employee.notes %></p>
+      <p><strong>Birthdate:</strong> <%= @employee.birthdate %></p>
+      <p><strong>Hire Date:</strong> <%= @employee.hiredate %></p>
+      <p><strong>Gender:</strong> <%= @employee.gender %></p>
+    </div>
+    <div class="card-footer text-center">
+      <%= link_to 'Back to Employees', employees_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   get "home/load_user_details/:id" => "home#load_user_details", as: :load_user_details
   get "home/show_user_details" => "home#show_user_details"
   
-
+  resources :employees, only: [:index, :show]
 end
