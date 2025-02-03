@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <h1 class="text-center">Edit Employee</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <%= form_with(model: @employee, local: true) do |form| %>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :firstname, class: 'form-label' %>
+            <%= form.text_field :firstname, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :lastname, class: 'form-label' %>
+            <%= form.text_field :lastname, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :phone_number, class: 'form-label' %>
+            <%= form.text_field :phone_number, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :haspassport, class: 'form-label' %>
+            <div class="form-check">
+              <%= form.check_box :haspassport, class: 'form-check-input' %>
+              <%= form.label :haspassport, class: 'form-check-label' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :salary, class: 'form-label' %>
+            <%= form.number_field :salary, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :notes, class: 'form-label' %>
+            <%= form.text_area :notes, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :birthdate, class: 'form-label' %>
+            <%= form.date_select :birthdate, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :hiredate, class: 'form-label' %>
+            <%= form.date_select :hiredate, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :gender, class: 'form-label' %>
+            <div class="form-check">
+              <%= form.radio_button :gender, 'Male', class: 'form-check-input' %>
+              <%= form.label :gender_male, 'Male', class: 'form-check-label' %>
+            </div>
+            <div class="form-check">
+              <%= form.radio_button :gender, 'Female', class: 'form-check-input' %>
+              <%= form.label :gender_female, 'Female', class: 'form-check-label' %>
+            </div>
+            <div class="form-check">
+              <%= form.radio_button :gender, 'Other', class: 'form-check-input' %>
+              <%= form.label :gender_other, 'Other', class: 'form-check-label' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <%= form.submit 'Update Employee', class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', employee_path(@employee), class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

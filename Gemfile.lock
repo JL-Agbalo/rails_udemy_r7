@@ -106,6 +106,7 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.1)
     erubi (1.13.1)
+    flatpickr (4.6.13.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     httparty (0.22.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  flatpickr
   httparty
   importmap-rails
   jbuilder
