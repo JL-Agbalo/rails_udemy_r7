@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../config/application"
-require "importmap/commands"
+pin "application", preload: true
+pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
+pin "controllers", to: "controllers/index.js", preload: true
+pin "jquery", to: "https://code.jquery.com/jquery-3.6.0.min.js", preload: true
