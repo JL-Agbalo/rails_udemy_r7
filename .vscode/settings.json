@@ -1,0 +1,7 @@
+{
+  "emmet.includeLanguages": {
+    "erb": "html",
+    "html.erb": "html"
+  },
+  "auto-close-tag.activationOnLanguage": ["erb", "html", "html.erb"]
+}

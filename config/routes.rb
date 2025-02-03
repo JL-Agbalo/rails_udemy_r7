@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "home/getQueryStringValues" => "home#getQueryStringValues"
+  get "home/getPassDataToViews" => "home#getPassDataToViews"
+  get "home/showDateTimeInfo" => "home#showDateTimeInfo"
 end
