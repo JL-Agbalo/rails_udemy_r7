@@ -241,3 +241,209 @@ gem "image_processing"
 gem 'actiontext'
 
 # gem 'flatpickr'
+
+# Rails Migration Column Types
+
+## **String & Text**
+
+- `string` - Short text (default limit: 255 characters)
+- `text` - Long text (no default limit)
+
+## **Numbers**
+
+- `integer` - Whole numbers
+- `bigint` - Large whole numbers (used for primary keys)
+- `float` - Decimal numbers (approximate)
+- `decimal` - Precise decimal numbers (`precision` and `scale` can be set)
+
+## **Boolean**
+
+- `boolean` - `true` or `false` values
+
+## **Date & Time**
+
+- `date` - Stores only the date (YYYY-MM-DD)
+- `datetime` - Stores date and time (YYYY-MM-DD HH:MM:SS)
+- `timestamp` - Similar to `datetime`, but optimized for timestamps
+- `time` - Stores only the time (HH:MM:SS)
+
+## **Binary**
+
+- `binary` - Stores binary data (e.g., images, files)
+
+## **Other Types**
+
+- `json` - Stores JSON data (PostgreSQL & MySQL)
+- `jsonb` - Stores JSON data (binary format, PostgreSQL only)
+- `uuid` - Universally unique identifier (PostgreSQL)
+- `inet` - IP address storage (PostgreSQL)
+
+## **References & Associations**
+
+- `references` - Adds a foreign key reference (e.g., `user:references` creates `user_id`)
+- `foreign_key` - Explicitly adds a foreign key constraint
+
+## **Example Usage**
+
+```ruby
+t.string :name
+t.integer :age
+t.boolean :active, default: true
+t.datetime :published_at
+t.references :user, foreign_key: true
+t.decimal :price, precision: 10, scale: 2
+t.jsonb :metadata
+```
+
+## **Notes**
+
+- `null: false` ensures a field cannot be `NULL`
+- `default: value` sets a default value
+- `index: true` adds an index for faster lookups
+
+# Rails Migration Modifications
+
+## **Adding Columns**
+
+Use `add_column` to add a new column to an existing table.
+
+```ruby
+add_column :users, :age, :integer, default: 18, null: false
+```
+
+### **Shortcut for Adding Columns**
+
+```ruby
+change_table :users do |t|
+  t.string :nickname
+  t.boolean :admin, default: false
+end
+```
+
+---
+
+## **Removing Columns**
+
+Use `remove_column` to delete a column.
+
+```ruby
+remove_column :users, :age
+```
+
+### **Shortcut for Removing Columns**
+
+```ruby
+change_table :users do |t|
+  t.remove :nickname, :admin
+end
+```
+
+---
+
+## **Renaming Columns**
+
+```ruby
+rename_column :users, :nickname, :username
+```
+
+---
+
+## **Changing Column Type**
+
+Use `change_column` to modify an existing column type.
+
+```ruby
+change_column :users, :age, :string
+```
+
+⚠️ **Note**: If data conversion is required, handle it separately before running the migration.
+
+---
+
+## **Adding Foreign Keys**
+
+To create a foreign key relationship:
+
+```ruby
+add_reference :posts, :user, foreign_key: true
+```
+
+OR:
+
+```ruby
+add_column :posts, :user_id, :bigint
+add_foreign_key :posts, :users
+```
+
+### **Adding an Index with a Foreign Key**
+
+```ruby
+add_reference :posts, :user, foreign_key: true, index: true
+```
+
+---
+
+## **Removing Foreign Keys**
+
+To remove a foreign key:
+
+```ruby
+remove_foreign_key :posts, :users
+```
+
+To remove the reference along with the foreign key:
+
+```ruby
+remove_reference :posts, :user, foreign_key: true
+```
+
+---
+
+## **Renaming a Table**
+
+```ruby
+rename_table :old_table_name, :new_table_name
+```
+
+---
+
+## **Dropping a Table**
+
+```ruby
+drop_table :users
+```
+
+⚠️ **Be careful** when dropping tables—this action is irreversible without backups!
+
+---
+
+## **Example: Complete Migration**
+
+```ruby
+class ModifyUsersTable < ActiveRecord::Migration[6.1]
+  def change
+    add_column :users, :nickname, :string
+    rename_column :users, :full_name, :name
+    remove_column :users, :age
+    change_column :users, :email, :text
+    add_reference :users, :company, foreign_key: true
+  end
+end
+```
+
+---
+
+## **Notes**
+
+- Always **run migrations** after making changes:
+  ```sh
+  rails db:migrate
+  ```
+- Use **rollback** if something goes wrong:
+  ```sh
+  rails db:rollback
+  ```
+- To check migration status:
+  ```sh
+  rails db:migrate:status
+  ```
