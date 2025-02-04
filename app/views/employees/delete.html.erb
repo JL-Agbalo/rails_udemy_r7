@@ -53,13 +53,24 @@
           <strong>Gender:</strong>
           <p><%= @employee.gender %></p>
         </div>
+        <div class="col-md-6">
+          <strong>Department:</strong>
+          <p><%= @employee.department.name %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Country:</strong>
+          <p><%= @employee.country.name %></p>
+        </div>
       </div>
 
       <div class="d-flex justify-content-start">
         <%= form_with model: @employee, url: employee_path(@employee), method: :delete, class: 'd-inline' do %>
           <%= submit_tag 'Yes, Delete', class: 'btn btn-danger me-2' %>
         <% end %>
-        <%= link_to 'Cancel', employees_path, class: 'btn btn-secondary ' %>
+        <%= link_to 'Cancel', employees_path, class: 'btn btn-secondary' %>
       </div>
     </div>
   </div>

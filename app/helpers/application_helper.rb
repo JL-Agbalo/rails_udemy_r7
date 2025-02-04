@@ -1,2 +1,9 @@
 module ApplicationHelper
+    def select_department
+        Department.all.collect { |d| [d.name, d.id] }
+    end
+
+    def select_country
+        Country.all.collect { |c| [c.name, c.id] }
+    end
 end

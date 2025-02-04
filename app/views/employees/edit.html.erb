@@ -3,7 +3,7 @@
 
   <div class="card mt-4">
     <div class="card-body">
-      <%= form_with(model: @employee, local: true) do |form| %>
+      <%= form_with model: @employee, local: true do |form| %>
         <div class="row mb-3">
           <div class="col-md-6">
             <%= form.label :firstname, class: 'form-label' %>
@@ -22,10 +22,7 @@
           </div>
           <div class="col-md-6">
             <%= form.label :haspassport, class: 'form-label' %>
-            <div class="form-check">
-              <%= form.check_box :haspassport, class: 'form-check-input' %>
-              <%= form.label :haspassport, class: 'form-check-label' %>
-            </div>
+            <%= form.check_box :haspassport, class: 'form-check-input' %>
           </div>
         </div>
 
@@ -66,6 +63,17 @@
               <%= form.radio_button :gender, 'Other', class: 'form-check-input' %>
               <%= form.label :gender_other, 'Other', class: 'form-check-label' %>
             </div>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :department_id, "Department", class: 'form-label' %>
+            <%= form.select :department_id, options_for_select(select_department, form.object.department_id), { include_blank: 'Select Department' }, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :country_id, "Country", class: 'form-label' %>
+            <%= form.select :country_id, options_for_select(select_country, form.object.country_id), { include_blank: 'Select Country' }, class: 'form-control' %>
           </div>
         </div>
 

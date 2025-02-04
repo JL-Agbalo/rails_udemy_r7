@@ -18,6 +18,8 @@
           <th>Birthdate</th>
           <th>Hire Date</th>
           <th>Gender</th>
+          <th>Department</th>
+          <th>Country</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -33,6 +35,8 @@
             <td><%= employee.birthdate %></td>
             <td><%= employee.hiredate %></td>
             <td><%= employee.gender %></td>
+            <td><%= employee.department.name %></td>
+            <td><%= employee.country.name %></td>
             <td class="text-center">
               <%= link_to 'Details', employee_path(employee), class: 'btn btn-success btn-sm' %>
               <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-primary btn-sm' %>

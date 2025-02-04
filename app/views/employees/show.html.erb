@@ -13,6 +13,8 @@
       <p><strong>Birthdate:</strong> <%= @employee.birthdate %></p>
       <p><strong>Hire Date:</strong> <%= @employee.hiredate %></p>
       <p><strong>Gender:</strong> <%= @employee.gender %></p>
+      <p><strong>Department:</strong> <%= @employee.department.name %></p>
+      <p><strong>Country:</strong> <%= @employee.country.name %></p>
     </div>
     <div class="card-footer text-center">
       <%= link_to 'Back to Employees', employees_path, class: 'btn btn-secondary' %>

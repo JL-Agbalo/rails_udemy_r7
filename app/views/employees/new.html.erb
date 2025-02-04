@@ -64,6 +64,17 @@
               <%= form.label :gender_other, 'Other', class: 'form-check-label' %>
             </div>
           </div>
+          <div class="col-md-6">
+            <%= form.label :department_id, "Department", class: 'form-label' %>
+            <%= form.select :department_id, options_for_select(select_department, form.object.department_id), { include_blank: 'Select Department' }, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :country_id, "Country", class: 'form-label' %>
+            <%= form.select :country_id, options_for_select(select_country, form.object.country_id), { include_blank: 'Select Country' }, class: 'form-control' %>
+          </div>
         </div>
 
         <div class="text-center mt-4">
