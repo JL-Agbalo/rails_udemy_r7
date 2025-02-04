@@ -4,6 +4,17 @@
   <div class="card mt-4">
     <div class="card-body">
       <%= form_with model: @user, local: true do |form| %>
+        <% if @user.errors.any? %>
+          <div class="alert alert-danger">
+            <h4 class="alert-heading">There were <%= pluralize(@user.errors.count, "error") %>:</h4>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <div class="row mb-3">
           <div class="col-md-6">
             <%= form.label :name, class: 'form-label' %>
@@ -62,7 +73,7 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <%= form.label :role, class: 'form-label' %>
-            <%= form.text_field :role, class: 'form-control' %>
+            <%= form.select :role, options_for_select(User::ROLES), { include_blank: 'Select Role' }, class: 'form-control' %>
           </div>
           <div class="col-md-6">
             <%= form.label :notes, class: 'form-label' %>
