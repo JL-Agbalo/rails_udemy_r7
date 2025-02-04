@@ -15,4 +15,14 @@ class User < ApplicationRecord
     validates :termsandconditions, acceptance: { message: "must be accepted" }
     validates :role, presence: true, inclusion: { in: ROLES, message: "%{value} is not a valid role" }
     validates :notes, length: { maximum: 500 }
+
+    validate :birth_date_cannot_be_in_the_future
+
+    private
+
+    def birth_date_cannot_be_in_the_future
+        if birthdate.present? && birthdate > Date.today
+            errors.add(:birthdate, "can't be in the future")
+        end
+    end
   end

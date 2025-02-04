@@ -4,25 +4,17 @@
   <div class="card mt-4">
     <div class="card-body">
       <%= form_with model: @user, local: true do |form| %>
-        <% if @user.errors.any? %>
-          <div class="alert alert-danger">
-            <h4 class="alert-heading">There were <%= pluralize(@user.errors.count, "error") %>:</h4>
-            <ul>
-              <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
+     
         <div class="row mb-3">
           <div class="col-md-6">
             <%= form.label :name, class: 'form-label' %>
             <%= form.text_field :name, class: 'form-control' %>
+            <%= print_error(@user, :name) %>
           </div>
           <div class="col-md-6">
             <%= form.label :email, class: 'form-label' %>
             <%= form.email_field :email, class: 'form-control' %>
+            <%= print_error(@user, :email) %>
           </div>
         </div>
 
@@ -30,10 +22,12 @@
           <div class="col-md-6">
             <%= form.label :password, class: 'form-label' %>
             <%= form.password_field :password, class: 'form-control' %>
+            <%= print_error(@user, :password) %>
           </div>
           <div class="col-md-6">
             <%= form.label :password_confirmation, class: 'form-label' %>
             <%= form.password_field :password_confirmation, class: 'form-control' %>
+            <%= print_error(@user, :password_confirmation) %>
           </div>
         </div>
 
@@ -41,10 +35,12 @@
           <div class="col-md-6">
             <%= form.label :gender, class: 'form-label' %>
             <%= form.select :gender, options_for_select([['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']]), { include_blank: 'Select Gender' }, class: 'form-control' %>
+            <%= print_error(@user, :gender) %>
           </div>
           <div class="col-md-6">
             <%= form.label :birthdate, class: 'form-label' %>
             <%= form.date_select :birthdate, class: 'form-control' %>
+            <%= print_error(@user, :birthdate) %>
           </div>
         </div>
 
@@ -52,10 +48,12 @@
           <div class="col-md-6">
             <%= form.label :phone, class: 'form-label' %>
             <%= form.text_field :phone, class: 'form-control' %>
+            <%= print_error(@user, :phone) %>
           </div>
           <div class="col-md-6">
             <%= form.label :postalcode, class: 'form-label' %>
             <%= form.text_field :postalcode, class: 'form-control' %>
+            <%= print_error(@user, :postalcode) %>
           </div>
         </div>
 
@@ -63,10 +61,12 @@
           <div class="col-md-6">
             <%= form.label :websiteurl, class: 'form-label' %>
             <%= form.url_field :websiteurl, class: 'form-control' %>
+            <%= print_error(@user, :websiteurl) %>
           </div>
           <div class="col-md-6">
             <%= form.label :termsandconditions, class: 'form-label' %>
             <%= form.check_box :termsandconditions, class: 'form-check-input' %>
+            <%= print_error(@user, :termsandconditions) %>
           </div>
         </div>
 
@@ -74,10 +74,12 @@
           <div class="col-md-6">
             <%= form.label :role, class: 'form-label' %>
             <%= form.select :role, options_for_select(User::ROLES), { include_blank: 'Select Role' }, class: 'form-control' %>
+            <%= print_error(@user, :role) %>
           </div>
           <div class="col-md-6">
             <%= form.label :notes, class: 'form-label' %>
             <%= form.rich_text_area :notes, class: 'form-control' %>
+            <%= print_error(@user, :notes) %>
           </div>
         </div>
 
