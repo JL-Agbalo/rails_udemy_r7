@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <h1 class="text-center">New User</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <%= form_with model: @user, local: true do |form| %>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :name, class: 'form-label' %>
+            <%= form.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :email, class: 'form-label' %>
+            <%= form.email_field :email, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :password, class: 'form-label' %>
+            <%= form.password_field :password, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :password_confirmation, class: 'form-label' %>
+            <%= form.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :gender, class: 'form-label' %>
+            <%= form.select :gender, options_for_select([['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']]), { include_blank: 'Select Gender' }, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :birthdate, class: 'form-label' %>
+            <%= form.date_select :birthdate, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :phone, class: 'form-label' %>
+            <%= form.text_field :phone, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :postalcode, class: 'form-label' %>
+            <%= form.text_field :postalcode, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :websiteurl, class: 'form-label' %>
+            <%= form.url_field :websiteurl, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :termsandconditions, class: 'form-label' %>
+            <%= form.check_box :termsandconditions, class: 'form-check-input' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= form.label :role, class: 'form-label' %>
+            <%= form.text_field :role, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :notes, class: 'form-label' %>
+            <%= form.rich_text_area :notes, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <%= form.submit 'Create User', class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', users_path, class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

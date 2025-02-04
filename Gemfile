@@ -72,3 +72,5 @@ end
 
 
 # gem 'flatpickr'
+
+gem 'bcrypt', '~> 3.1.7'

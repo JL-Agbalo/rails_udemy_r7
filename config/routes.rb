@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   get "employees/:id", to: "employees#show", as: :employee
   patch "employees/:id", to: "employees#update"
   delete "employees/:id", to: "employees#destroy"
+
+
+  resources:users 
 end
