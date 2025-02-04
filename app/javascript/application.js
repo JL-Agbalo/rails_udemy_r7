@@ -7,3 +7,6 @@ $(document).on("turbo:load", function () {
     $(".address-details-div").toggleClass("d-none");
   });
 });
+
+import "trix"
+import "@rails/actiontext"

@@ -233,3 +233,11 @@ Here are some of the most popular and useful gems for debugging in Rails:
 ---
 
 These gems provide a range of tools for debugging, profiling, logging, and error tracking to make your Rails development smoother and more efficient. Whether you need interactive debugging, performance analysis, or visualizing your database structure, these gems cover a variety of debugging needs.
+
+Additional Gem
+gem "capybara"
+gem "selenium-webdriver"
+gem "image_processing"
+gem 'actiontext'
+
+# gem 'flatpickr'
