@@ -20,9 +20,11 @@ Rails.application.routes.draw do
   
   # Define individual routes for employees
   get "employees", to: "employees#index", as: :employees
-  get "employees/:id", to: "employees#show", as: :employee
+  get "employees/new", to: "employees#new", as: :new_employee
+  post "employees", to: "employees#create"
   get "employees/:id/edit", to: "employees#edit", as: :edit_employee
   get "employees/:id/delete", to: "employees#delete", as: :delete_employee
+  get "employees/:id", to: "employees#show", as: :employee
   patch "employees/:id", to: "employees#update"
   delete "employees/:id", to: "employees#destroy"
 end

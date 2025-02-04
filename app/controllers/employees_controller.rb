@@ -7,6 +7,15 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
   end
 
+  def create
+    employee = Employee.new(employee_params)
+    if employee.save
+      redirect_to employees_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     @employee = Employee.find(params[:id])
   end
