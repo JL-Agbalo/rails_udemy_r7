@@ -18,5 +18,11 @@ Rails.application.routes.draw do
   get "home/load_user_details/:id" => "home#load_user_details", as: :load_user_details
   get "home/show_user_details" => "home#show_user_details"
   
-  resources :employees, only: [:index, :show, :edit]
+  # Define individual routes for employees
+  get "employees", to: "employees#index", as: :employees
+  get "employees/:id", to: "employees#show", as: :employee
+  get "employees/:id/edit", to: "employees#edit", as: :edit_employee
+  get "employees/:id/delete", to: "employees#delete", as: :delete_employee
+  patch "employees/:id", to: "employees#update"
+  delete "employees/:id", to: "employees#destroy"
 end

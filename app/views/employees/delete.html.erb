@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <h1 class="text-center">Delete Employee</h1>
+  <h3>Are you sure you want to delete this?</h3>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>First Name:</strong>
+          <p><%= @employee.firstname %></p>
+        </div>
+        <div class="col-md-6">
+          <strong>Last Name:</strong>
+          <p><%= @employee.lastname %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Phone Number:</strong>
+          <p><%= @employee.phone_number %></p>
+        </div>
+        <div class="col-md-6">
+          <strong>Has Passport:</strong>
+          <p><%= @employee.haspassport ? 'Yes' : 'No' %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Salary:</strong>
+          <p><%= number_to_currency(@employee.salary) %></p>
+        </div>
+        <div class="col-md-6">
+          <strong>Notes:</strong>
+          <p><%= @employee.notes %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Birthdate:</strong>
+          <p><%= @employee.birthdate %></p>
+        </div>
+        <div class="col-md-6">
+          <strong>Hire Date:</strong>
+          <p><%= @employee.hiredate %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Gender:</strong>
+          <p><%= @employee.gender %></p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-start">
+        <%= form_with model: @employee, url: employee_path(@employee), method: :delete, class: 'd-inline' do %>
+          <%= submit_tag 'Yes, Delete', class: 'btn btn-danger me-2' %>
+        <% end %>
+        <%= link_to 'Cancel', employees_path, class: 'btn btn-secondary ' %>
+      </div>
+    </div>
+  </div>
+</div>

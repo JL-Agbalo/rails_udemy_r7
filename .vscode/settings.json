@@ -3,5 +3,13 @@
     "erb": "html",
     "html.erb": "html"
   },
-  "auto-close-tag.activationOnLanguage": ["erb", "html", "html.erb"]
+  "auto-close-tag.activationOnLanguage": ["erb", "html", "html.erb"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[erb]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html.erb]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
