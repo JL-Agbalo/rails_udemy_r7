@@ -11,6 +11,7 @@
 ## 2. **Rails Models**
 
 - [x] ActiveRecord Basics
+      https://www.youtube.com/watch?v=1ZkwvPMiq4Q&list=PLuXAQphyHeEwbi8CZDBDuaNZfJJuSJ4sC
 - [x] Validations
 - [x] Associations (has_many, belongs_to, has_one, etc.)
 - [x] Scopes
@@ -22,7 +23,7 @@
 - [x] Layouts and Partials
 - [x] Helper Methods
 - [x] Rendering JSON Responses
-- [ ] Turbo and Hotwire Basics
+- [x] Turbo and Hotwire Basics
 
 ## 4. **Rails Controllers**
 
@@ -43,68 +44,82 @@
 
 - [ ] Unit Tests with RSpec or Minitest
 - [ ] Request Specs
-- [ ] FactoryBot for Test Data
+- [ ] Integration Tests
 - [ ] Test Coverage with SimpleCov
-- [ ] Testing Controllers and Models
+- [ ] Test-driven Development (TDD)
 
-## 7. **Rails 7 New Features**
+## 7. **Routing and URL Generation**
 
-- [ ] **Hotwire**: Turbo + Stimulus for modern, reactive UIs without much JavaScript.
-- [ ] **Turbo**: Drive fast page updates via web sockets, AJAX, and partial page refreshes.
-- [ ] **Stimulus**: Minimal JavaScript framework integrated with Rails for dynamic interactions.
-- [ ] **Async Querying with ActiveRecord**: Async queries allow database queries to run in the background.
-- [ ] **Zeitwerk Autoloader**: A faster, more efficient way to load your code automatically.
-- [ ] **Multiple Database Support**: Simplified setup for working with multiple databases in one application.
-- [ ] **Hotwire for Live Updates**: Easily push live updates from the server to the client.
-- [ ] **Improved Error Pages**: More user-friendly error pages in development and production.
-- [ ] **Esbuild as the Default JS Compiler**: Faster JavaScript bundling (replaces Webpacker).
-- [ ] **ActionText Improvements**: Rich text editor now supports more complex styling and custom embeds.
+- [ ] Rails Routing: Understanding `resources`, `member`, `collection`, and custom routes
+- [ ] Path Helpers: Generating paths with helper methods
+- [ ] Nested Routes: Working with nested resources and URLs
+- [ ] Named Routes: Using `as:` for custom URL names
 
-## 8. **Security**
+## 8. **Background Jobs**
 
-- [ ] **Cross-Site Scripting (XSS) Protection**: Sanitize input, use `escape` helpers.
-- [ ] **Cross-Site Request Forgery (CSRF) Protection**: Rails' default protection mechanism.
-- [ ] **SQL Injection Prevention**: Use ActiveRecord queries to prevent direct SQL injection.
-- [ ] **Password Hashing**: Use bcrypt for securely storing passwords.
-- [ ] **SSL/HTTPS Configuration**: Enforce HTTPS to ensure secure communication.
-- [ ] **Content Security Policy (CSP)**: Implement CSP headers to prevent unauthorized resources.
-- [ ] **Two-Factor Authentication (2FA)**: Add multi-factor authentication for improved security.
-- [ ] **Secure Headers**: Configure headers like HSTS, X-Frame-Options, and X-Content-Type-Options.
-- [ ] **API Rate Limiting**: Implement rate limiting to prevent abuse of APIs.
-- [ ] **Access Control**: Use Pundit or CanCanCan to manage user permissions.
-- [x] **Rack Attack**: Protect against brute-force and denial-of-service (DoS) attacks by rate-limiting requests and blocking malicious traffic.
+- [ ] ActiveJob: Understanding Rails' background job system
+- [ ] Sidekiq: Using Sidekiq for real-time job processing
+- [ ] Job Queues: Understanding how to manage and scale job processing
+- [ ] Job Scheduling: Scheduling tasks with tools like `whenever` or `sidekiq-scheduler`
 
-## 9. **Rails Advanced Topics**
+## 9. **Action Cable (Real-time Features)**
 
-- [ ] Active Job and Background Jobs (Sidekiq)
-- [ ] Caching Strategies
-- [ ] Rails API Mode
-- [ ] WebSockets (ActionCable)
-- [ ] Internationalization (I18n)
+- [ ] WebSockets: Understanding how WebSockets work in Rails
+- [ ] Action Cable: Setting up channels for real-time data updates
+- [ ] Streaming: Sending updates to clients in real time (e.g., chat apps, live feeds)
 
-## 10. **Performance and Deployment**
+## 10. **Front-End Integration**
 
-- [ ] Optimizing SQL Queries with ActiveRecord
-- [ ] Database Indexing
-- [ ] Caching with Redis and Memcached
-- [ ] Deploying to Heroku or another cloud provider
-- [ ] Monitoring and Logging
+- [ ] Turbo: Using Turbo for optimizing page loads and navigation
+- [ ] Stimulus: Enhancing pages with minimal JavaScript using Stimulus controllers
+- [ ] Webpacker: Managing JavaScript, CSS, and other assets with Webpack
+- [ ] Tailwind CSS: Using Tailwind CSS for utility-first styling in Rails apps
+- [ ] Hotwire: Building real-time, fast applications with Turbo + Stimulus
 
-## 11. **Front-End Integration**
+## 11. **ActiveStorage**
 
-- [ ] Using Hotwire (Turbo + Stimulus)
-- [ ] Integrating with JavaScript frameworks (React, Vue, etc.)
-- [ ] Handling Forms with Stimulus
-- [ ] Tailwind CSS or Bootstrap Integration
+- [ ] File Uploads: Handling file uploads and attachments (images, PDFs, etc.)
+- [ ] Service Backends: Using cloud storage (AWS S3, Google Cloud Storage) with ActiveStorage
+- [ ] Variant Generation: Creating image variants for different resolutions and sizes
 
-## 12. **Version Control and Collaboration**
+## 12. **Action Mailer**
 
-- [x] Git Basics (Clone, Commit, Push, Pull)
-- [ ] GitHub Workflow (Pull Requests, Branching)
-- [ ] Collaboration with Git
+- [ ] Email Setup: Sending emails from your Rails app with ActionMailer
+- [ ] HTML and Plain-text Emails: Creating both HTML and text-based email templates
+- [ ] Email Preview: Previewing emails in the development environment
+- [ ] Attachments: Sending file attachments via email
 
-## 13. **Stay Updated**
+## 13. **Caching**
 
-- [ ] Follow Rails News
-- [ ] Read Rails Guides regularly
-- [ ] Participate in Rails Communities (Forums, Stack Overflow, etc.)
+- [ ] Page Caching: Caching entire pages for better performance
+- [ ] Action Caching: Caching controller actions for faster responses
+- [ ] Fragment Caching: Caching partials to reduce load times
+- [ ] Low-level Caching: Using Rails cache store (e.g., Memcached, Redis) for complex objects
+
+## 14. **Localization and Internationalization (i18n)**
+
+- [ ] Rails Localization: Setting up `config/locales` for translations
+- [ ] Dynamic Translations: Using translation helpers (`t`) in views and controllers
+- [ ] Pluralization and Gender Handling: Managing plural and gendered words in translations
+- [ ] Locale Switching: Allowing users to change their locale dynamically
+
+## 15. **Performance Optimization**
+
+- [ ] Query Optimization: Using `EXPLAIN` to analyze slow queries
+- [ ] Database Indexing: Creating and managing indexes for faster queries
+- [ ] Eager Loading: Avoiding N+1 query problems with `includes` and `joins`
+- [ ] Caching Strategies: Using caching at various levels (page, action, fragment, low-level)
+
+## 16. **Deployment**
+
+- [ ] Capistrano: Deploying Rails applications using Capistrano
+- [ ] Heroku: Deploying and managing Rails apps on Heroku
+- [ ] Docker: Containerizing Rails apps using Docker
+- [ ] CI/CD: Setting up Continuous Integration and Continuous Deployment pipelines (e.g., GitHub Actions, CircleCI)
+
+## 17. **Other Tools**
+
+- [ ] Rails Console: Mastering Rails' interactive console for debugging and testing
+- [ ] Rails Debugging: Using `byebug` and `pry` for debugging code
+- [ ] Database Schema: Understanding and managing your database schema with `db:schema`
+- [ ] Ruby Gems: Using popular gems like `Devise`, `Kaminari`, `Pundit`, `Sidekiq`, etc.

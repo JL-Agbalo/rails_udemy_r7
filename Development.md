@@ -447,3 +447,13 @@ end
   ```sh
   rails db:migrate:status
   ```
+
+========
+
+user_details = User.pluck(:name, :email)
+
+- The `.pluck` method retrieves specific columns from the database, optimizing queries by not loading entire ActiveRecord objects.
+
+http://127.0.0.1:3000/rails/info/routes
+
+The rails generate stimulus selectallcheckbox command generates a new Stimulus controller named selectallcheckbox_controller.js. Stimulus is a JavaScript framework that enhances your HTML with behavior. It is often used in Rails applications to add interactivity without writing a lot of custom JavaScript.

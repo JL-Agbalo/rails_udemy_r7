@@ -1,14 +1,12 @@
 import "@hotwired/turbo-rails";
 import "controllers";
-// import "jquery";
 import "trix";
 import "@rails/actiontext";
 
-// $(document).on("turbo:load", function () {
-//   $("#address_details").on("change", function () {
-//     $(".address-details-div").toggleClass("d-none");
-//   });
-// });
+// Remove the following lines if they exist
+// import { Application } from "stimulus";
+// import { definitionsFromContext } from "stimulus/webpack-helpers";
 
-import "trix";
-import "@rails/actiontext";
+// const application = Application.start();
+// const context = require.context("../controllers", true, /\.js$/);
+// application.load(definitionsFromContext(context));

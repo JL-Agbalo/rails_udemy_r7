@@ -8,70 +8,81 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Create a new employee
-# Create new employees
-# Employee.create(
-#   firstname: "John",
-#   lastname: "Doe",
-#   phone_number: "123-456-7890",
-#   haspassport: true,
-#   salary: 60000,
-#   notes: "Experienced software engineer",
-#   birthdate: Date.new(1985, 6, 15),
-#   hiredate: Date.new(2020, 1, 10),
-#   gender: "Male"
-# )
+# Clear existing data
+Department.destroy_all
+Country.destroy_all
+Employee.destroy_all
 
-# Employee.create(
-#   firstname: "Jane",
-#   lastname: "Smith",
-#   phone_number: "987-654-3210",
-#   haspassport: false,
-#   salary: 55000,
-#   notes: "Junior developer",
-#   birthdate: Date.new(1990, 8, 25),
-#   hiredate: Date.new(2021, 5, 20),
-#   gender: "Female"
-# )
+# Create some departments
+departments = Department.create([
+  { name: 'HR' },
+  { name: 'Engineering' },
+  { name: 'Marketing' },
+  { name: 'Sales' }
+])
 
-# Employee.create(
-#   firstname: "Alice",
-#   lastname: "Johnson",
-#   phone_number: "555-123-4567",
-#   haspassport: true,
-#   salary: 70000,
-#   notes: "Project manager",
-#   birthdate: Date.new(1982, 3, 10),
-#   hiredate: Date.new(2019, 4, 15),
-#   gender: "Female"
-# )
+# Create some countries
+countries = Country.create([
+  { name: 'USA' },
+  { name: 'Canada' },
+  { name: 'UK' },
+  { name: 'Germany' }
+])
 
-# Employee.create(
-#   firstname: "Diana",
-#   lastname: "Evans",
-#   phone_number: "555-321-9876",
-#   haspassport: false,
-#   salary: 58000,
-#   notes: "QA engineer",
-#   birthdate: Date.new(1992, 12, 15),
-#   hiredate: Date.new(2021, 3, 10),
-#   gender: "Female"
-# )
+# Create some employees
+employees = Employee.create([
+  {
+    firstname: 'John',
+    lastname: 'Doe',
+    phone_number: '1234567890',
+    haspassport: true,
+    salary: 60000,
+    notes: 'Senior Developer',
+    birthdate: '1985-01-15',
+    hiredate: '2010-06-01',
+    gender: 'Male',
+    country_id: countries.sample.id,
+    department_id: departments.sample.id
+  },
+  {
+    firstname: 'Jane',
+    lastname: 'Smith',
+    phone_number: '0987654321',
+    haspassport: false,
+    salary: 50000,
+    notes: 'Marketing Specialist',
+    birthdate: '1990-05-20',
+    hiredate: '2015-09-15',
+    gender: 'Female',
+    country_id: countries.sample.id,
+    department_id: departments.sample.id
+  },
+  {
+    firstname: 'Alice',
+    lastname: 'Johnson',
+    phone_number: '5555555555',
+    haspassport: true,
+    salary: 70000,
+    notes: 'HR Manager',
+    birthdate: '1980-03-10',
+    hiredate: '2008-11-30',
+    gender: 'Female',
+    country_id: countries.sample.id,
+    department_id: departments.sample.id
+  },
+  {
+    firstname: 'Bob',
+    lastname: 'Brown',
+    phone_number: '4444444444',
+    haspassport: false,
+    salary: 45000,
+    notes: 'Sales Representative',
+    birthdate: '1992-07-25',
+    hiredate: '2018-01-20',
+    gender: 'Male',
+    country_id: countries.sample.id,
+    department_id: departments.sample.id
+  }
+])
 
-# Create sample departments unless they already exist
-departments = ["Engineering", "Human Resources", "Marketing", "Sales", "Finance"]
-
-if Department.count == 0
-  departments.each do |department_name|
-    Department.find_or_create_by!(name: department_name)
-  end
-end
-
-# Create sample countries unless they already exist
-countries = ["United States", "Canada", "United Kingdom", "Australia", "Germany"]
-
-if Country.count == 0
-  countries.each do |country_name|
-    Country.find_or_create_by!(name: country_name)
-  end
-end
+puts "Seeded #{Department.count} departments, #{Country.count} countries, and #{Employee.count} employees."

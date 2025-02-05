@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <h1 class="text-center">Deletion of an Employee</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <% if @employees.present? && @employees.any? %>
+        <%= form_with url: emp_delete_singleemployeedelete_index_path, method: :delete, local: true do |form| %>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Select</th>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Country</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @employees.each do |employee| %>
+                <tr>
+                  <td>
+                    <%= form.radio_button :employee_id, employee.id %>
+                  </td>
+                  <td><%= employee.id %></td>
+                  <td><%= employee.firstname %></td>
+                  <td><%= employee.lastname %></td>
+                  <td><%= employee.department.name %></td>
+                  <td><%= employee.country.name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="text-center mt-4">
+            <%= form.submit 'Delete Selected Employee', class: 'btn btn-danger' %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center">No employees available for deletion.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

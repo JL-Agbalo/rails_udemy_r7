@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h1 class="text-center">Deletion of an Employee</h1>
+
+  <div class="card mt-4">
+    <div class="card-body" data-controller="selectallcheckbox">
+      <% if @employees.present? && @employees.any? %>
+        <%= form_with url: bulk_delete_bulkdeleteemployees_path, method: :delete, local: true do |form| %>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <%= check_box_tag 'select_all', nil, false, id: 'select-all', data: { action: "change->selectallcheckbox#toggleCheckboxes", selectallcheckbox_target: "chkheader" } %>
+                </th>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Country</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @employees.each do |employee| %>
+                <tr>
+                  <td>
+                    <%= check_box_tag 'employee_ids[]', employee.id, false, class: 'employee-checkbox', data: { selectallcheckbox_target: "checkbox" } %>
+                  </td>
+                  <td><%= employee.id %></td>
+                  <td><%= employee.firstname %></td>
+                  <td><%= employee.lastname %></td>
+                  <td><%= employee.department.name %></td>
+                  <td><%= employee.country.name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="text-center mt-4">
+            <%= form.submit 'Delete Selected Employees', class: 'btn btn-danger' %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center">No employees available for deletion.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
