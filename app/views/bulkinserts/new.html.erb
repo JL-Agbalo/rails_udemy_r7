@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h1 class="text-center">Bulk Insert Employees</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <%= form_with url: bulkinserts_path, method: :post, local: true do |form| %>
+        <div id="employees-fields">
+          <%= render 'employee_fields' %>
+        </div>
+        <div class="text-center mt-4">
+          <button type="button" class="btn btn-secondary" id="add-employee">Add Employee</button>
+          <%= form.submit 'Insert Employees', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('add-employee').addEventListener('click', function() {
+      var newFields = document.querySelector('.employee-fields').cloneNode(true);
+      newFields.querySelectorAll('input, select').forEach(function(input) {
+        input.value = '';
+      });
+      document.getElementById('employees-fields').appendChild(newFields);
+    });
+
+    document.getElementById('employees-fields').addEventListener('click', function(event) {
+      if (event.target.classList.contains('remove-employee')) {
+        event.target.closest('.employee-fields').remove();
+      }
+    });
+  });
+<% end %>

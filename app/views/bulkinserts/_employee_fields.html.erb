@@ -1,0 +1,23 @@
+<!-- filepath: /c:/Users/johnl/Desktop/Projects/rails_udemy_r7/app/views/bulkinserts/_employee_fields.html.erb -->
+<div class="employee-fields mb-3">
+  <div class="row">
+    <div class="col">
+      <%= text_field_tag 'employees[][firstname]', nil, placeholder: "First Name", class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= text_field_tag 'employees[][lastname]', nil, placeholder: "Last Name", class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= select_tag 'employees[][department_id]', options_for_select(select_department), class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= select_tag 'employees[][country_id]', options_for_select(select_country), class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= number_field_tag 'employees[][salary]', nil, placeholder: "Salary", class: 'form-control' %>
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-danger remove-employee">Remove</button>
+    </div>
+  </div>
+</div>
