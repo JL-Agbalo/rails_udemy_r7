@@ -8,81 +8,102 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Clear existing data
-Employee.destroy_all
-Department.destroy_all
+Offshoreemployee.destroy_all
 Country.destroy_all
 State.destroy_all
 City.destroy_all
 
-# Create some departments
-departments = Department.create([
-  { name: 'HR' },
-  { name: 'Engineering' },
-  { name: 'Marketing' },
-  { name: 'Sales' }
-])
-
-# Create some countries
+# Create Countries
 countries = Country.create([
   { name: 'USA' },
   { name: 'Canada' },
   { name: 'UK' },
-  { name: 'Germany' }
+  { name: 'Germany' },
+  { name: 'India' },
+  { name: 'Australia' }
 ])
 
-# Create some states and associate them with countries
+# Create States
 states = State.create([
-  { name: 'California', country: countries.detect { |c| c.name == 'USA' } },
-  { name: 'Ontario', country: countries.detect { |c| c.name == 'Canada' } },
-  { name: 'England', country: countries.detect { |c| c.name == 'UK' } },
-  { name: 'Bavaria', country: countries.detect { |c| c.name == 'Germany' } }
+  { name: 'California', country_id: countries.detect { |c| c.name == 'USA' }.id },
+  { name: 'New York', country_id: countries.detect { |c| c.name == 'USA' }.id },
+  { name: 'Ontario', country_id: countries.detect { |c| c.name == 'Canada' }.id },
+  { name: 'Quebec', country_id: countries.detect { |c| c.name == 'Canada' }.id },
+  { name: 'England', country_id: countries.detect { |c| c.name == 'UK' }.id },
+  { name: 'Bavaria', country_id: countries.detect { |c| c.name == 'Germany' }.id },
+  { name: 'Maharashtra', country_id: countries.detect { |c| c.name == 'India' }.id },
+  { name: 'New South Wales', country_id: countries.detect { |c| c.name == 'Australia' }.id }
 ])
 
-# Create some cities and associate them with states
+# Create Cities
 cities = City.create([
-  { name: 'Los Angeles', state: states.detect { |s| s.name == 'California' } },
-  { name: 'San Francisco', state: states.detect { |s| s.name == 'California' } },
-  { name: 'San Diego', state: states.detect { |s| s.name == 'California' } },
-  { name: 'Toronto', state: states.detect { |s| s.name == 'Ontario' } },
-  { name: 'Ottawa', state: states.detect { |s| s.name == 'Ontario' } },
-  { name: 'Vancouver', state: states.detect { |s| s.name == 'Ontario' } },
-  { name: 'London', state: states.detect { |s| s.name == 'England' } },
-  { name: 'Manchester', state: states.detect { |s| s.name == 'England' } },
-  { name: 'Birmingham', state: states.detect { |s| s.name == 'England' } },
-  { name: 'Munich', state: states.detect { |s| s.name == 'Bavaria' } },
-  { name: 'Berlin', state: states.detect { |s| s.name == 'Bavaria' } },
-  { name: 'Hamburg', state: states.detect { |s| s.name == 'Bavaria' } }
+  { name: 'Los Angeles', state_id: states.detect { |s| s.name == 'California' }.id },
+  { name: 'San Francisco', state_id: states.detect { |s| s.name == 'California' }.id },
+  { name: 'New York City', state_id: states.detect { |s| s.name == 'New York' }.id },
+  { name: 'Toronto', state_id: states.detect { |s| s.name == 'Ontario' }.id },
+  { name: 'Montreal', state_id: states.detect { |s| s.name == 'Quebec' }.id },
+  { name: 'London', state_id: states.detect { |s| s.name == 'England' }.id },
+  { name: 'Munich', state_id: states.detect { |s| s.name == 'Bavaria' }.id },
+  { name: 'Mumbai', state_id: states.detect { |s| s.name == 'Maharashtra' }.id },
+  { name: 'Sydney', state_id: states.detect { |s| s.name == 'New South Wales' }.id }
 ])
 
-# Create some Offshoreemployee
+# Create Offshore Employees
 offshoreemployees = Offshoreemployee.create([
   {
-    firstname: 'John',
-    lastname: 'Doe',
-    country_id: countries.sample.id,
-    state_id: states.sample.id,
-    city_id: cities.sample.id
+    firstname: 'Michael',
+    lastname: 'Scott',
+    country_id: countries.detect { |c| c.name == 'USA' }.id,
+    state_id: states.detect { |s| s.name == 'California' }.id,
+    city_id: cities.detect { |c| c.name == 'Los Angeles' }.id
   },
   {
-    firstname: 'Jane',
-    lastname: 'Smith',
-    country_id: countries.sample.id,
-    state_id: states.sample.id,
-    city_id: cities.sample.id
+    firstname: 'Pam',
+    lastname: 'Beesly',
+    country_id: countries.detect { |c| c.name == 'USA' }.id,
+    state_id: states.detect { |s| s.name == 'New York' }.id,
+    city_id: cities.detect { |c| c.name == 'New York City' }.id
   },
   {
-    firstname: 'Alice',
-    lastname: 'Johnson',
-    country_id: countries.sample.id,
-    state_id: states.sample.id,
-    city_id: cities.sample.id
-  },
-  {
-    firstname: 'Bob',
-    lastname: 'Brown',
-    country_id: countries.sample.id,
-    state_id: states.sample.id,
-    city_id: cities.sample.id
+    firstname: 'Jim',
+    lastname: 'Halpert',
+    country_id: countries.detect { |c| c.name == 'Canada' }.id,
+    state_id: states.detect { |s| s.name == 'Ontario' }.id,
+    city_id: cities.detect { |c| c.name == 'Toronto' }.id
   }
 ])
+
+puts "✅ Seeding completed! Added #{offshoreemployees.count} offshore employees, #{countries.count} countries, #{states.count} states, and #{cities.count} cities."
+# Add more Offshore Employees
+more_offshoreemployees = Offshoreemployee.create([
+  {
+    firstname: 'Dwight',
+    lastname: 'Schrute',
+    country_id: countries.detect { |c| c.name == 'Germany' }.id,
+    state_id: states.detect { |s| s.name == 'Bavaria' }.id,
+    city_id: cities.detect { |c| c.name == 'Munich' }.id
+  },
+  {
+    firstname: 'Angela',
+    lastname: 'Martin',
+    country_id: countries.detect { |c| c.name == 'UK' }.id,
+    state_id: states.detect { |s| s.name == 'England' }.id,
+    city_id: cities.detect { |c| c.name == 'London' }.id
+  },
+  {
+    firstname: 'Kevin',
+    lastname: 'Malone',
+    country_id: countries.detect { |c| c.name == 'Australia' }.id,
+    state_id: states.detect { |s| s.name == 'New South Wales' }.id,
+    city_id: cities.detect { |c| c.name == 'Sydney' }.id
+  },
+  {
+    firstname: 'Stanley',
+    lastname: 'Hudson',
+    country_id: countries.detect { |c| c.name == 'India' }.id,
+    state_id: states.detect { |s| s.name == 'Maharashtra' }.id,
+    city_id: cities.detect { |c| c.name == 'Mumbai' }.id
+  }
+])
+
+puts "✅ Added #{more_offshoreemployees.count} more offshore employees."
