@@ -38,4 +38,10 @@ Rails.application.routes.draw do
   resources :bulkdeleteemployees, only: [:index] do
     delete 'bulk_delete', on: :collection
   end
+
+  resources :bulkupdates, only: [:index] do
+    collection do
+      patch 'bulk_update', to: 'bulkupdates#bulk_update'
+    end
+  end
 end
