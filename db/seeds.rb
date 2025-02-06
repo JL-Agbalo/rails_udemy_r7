@@ -9,9 +9,11 @@
 #   end
 
 # Clear existing data
+Employee.destroy_all
 Department.destroy_all
 Country.destroy_all
-Employee.destroy_all
+State.destroy_all
+City.destroy_all
 
 # Create some departments
 departments = Department.create([
@@ -29,60 +31,58 @@ countries = Country.create([
   { name: 'Germany' }
 ])
 
-# Create some employees
-employees = Employee.create([
+# Create some states and associate them with countries
+states = State.create([
+  { name: 'California', country: countries.detect { |c| c.name == 'USA' } },
+  { name: 'Ontario', country: countries.detect { |c| c.name == 'Canada' } },
+  { name: 'England', country: countries.detect { |c| c.name == 'UK' } },
+  { name: 'Bavaria', country: countries.detect { |c| c.name == 'Germany' } }
+])
+
+# Create some cities and associate them with states
+cities = City.create([
+  { name: 'Los Angeles', state: states.detect { |s| s.name == 'California' } },
+  { name: 'San Francisco', state: states.detect { |s| s.name == 'California' } },
+  { name: 'San Diego', state: states.detect { |s| s.name == 'California' } },
+  { name: 'Toronto', state: states.detect { |s| s.name == 'Ontario' } },
+  { name: 'Ottawa', state: states.detect { |s| s.name == 'Ontario' } },
+  { name: 'Vancouver', state: states.detect { |s| s.name == 'Ontario' } },
+  { name: 'London', state: states.detect { |s| s.name == 'England' } },
+  { name: 'Manchester', state: states.detect { |s| s.name == 'England' } },
+  { name: 'Birmingham', state: states.detect { |s| s.name == 'England' } },
+  { name: 'Munich', state: states.detect { |s| s.name == 'Bavaria' } },
+  { name: 'Berlin', state: states.detect { |s| s.name == 'Bavaria' } },
+  { name: 'Hamburg', state: states.detect { |s| s.name == 'Bavaria' } }
+])
+
+# Create some Offshoreemployee
+offshoreemployees = Offshoreemployee.create([
   {
     firstname: 'John',
     lastname: 'Doe',
-    phone_number: '1234567890',
-    haspassport: true,
-    salary: 60000,
-    notes: 'Senior Developer',
-    birthdate: '1985-01-15',
-    hiredate: '2010-06-01',
-    gender: 'Male',
     country_id: countries.sample.id,
-    department_id: departments.sample.id
+    state_id: states.sample.id,
+    city_id: cities.sample.id
   },
   {
     firstname: 'Jane',
     lastname: 'Smith',
-    phone_number: '0987654321',
-    haspassport: false,
-    salary: 50000,
-    notes: 'Marketing Specialist',
-    birthdate: '1990-05-20',
-    hiredate: '2015-09-15',
-    gender: 'Female',
     country_id: countries.sample.id,
-    department_id: departments.sample.id
+    state_id: states.sample.id,
+    city_id: cities.sample.id
   },
   {
     firstname: 'Alice',
     lastname: 'Johnson',
-    phone_number: '5555555555',
-    haspassport: true,
-    salary: 70000,
-    notes: 'HR Manager',
-    birthdate: '1980-03-10',
-    hiredate: '2008-11-30',
-    gender: 'Female',
     country_id: countries.sample.id,
-    department_id: departments.sample.id
+    state_id: states.sample.id,
+    city_id: cities.sample.id
   },
   {
     firstname: 'Bob',
     lastname: 'Brown',
-    phone_number: '4444444444',
-    haspassport: false,
-    salary: 45000,
-    notes: 'Sales Representative',
-    birthdate: '1992-07-25',
-    hiredate: '2018-01-20',
-    gender: 'Male',
     country_id: countries.sample.id,
-    department_id: departments.sample.id
+    state_id: states.sample.id,
+    city_id: cities.sample.id
   }
 ])
-
-puts "Seeded #{Department.count} departments, #{Country.count} countries, and #{Employee.count} employees."
