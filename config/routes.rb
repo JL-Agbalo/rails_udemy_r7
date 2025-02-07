@@ -46,4 +46,11 @@ Rails.application.routes.draw do
   end
 
   resources :bulkinserts, only: [:new, :create]
+  
+  resources :offshoreemployees do
+    collection do
+      get 'get_states'
+      get 'get_cities'
+    end
+  end
 end

@@ -1,0 +1,65 @@
+<div class="">
+  <h1>Cascading Select Box</h1>
+  <%= form_with(url: offshoreemployees_path, method: :post, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :firstname, "First Name" %>
+      <%= f.text_field :firstname, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lastname, "Last Name" %>
+      <%= f.text_field :lastname, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :country_id, "Country" %>
+      <%= f.collection_select :country_id, Country.all, :id, :name, { prompt: "Select Country" }, { class: "form-control", id: "country-select" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :state_id, "State" %>
+      <%= f.collection_select :state_id, [], :id, :name, { prompt: "Select State" }, { class: "form-control", id: "state-select" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :city_id, "City" %>
+      <%= f.collection_select :city_id, [], :id, :name, { prompt: "Select City" }, { class: "form-control", id: "city-select" } %>
+    </div>
+    <%= f.submit "Insert Record", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const countrySelect = document.getElementById("country-select");
+    const stateSelect = document.getElementById("state-select");
+    const citySelect = document.getElementById("city-select");
+
+    countrySelect.addEventListener("change", function() {
+      const countryId = this.value;
+      fetch(`/offshoreemployees/get_states?country_id=${countryId}`)
+        .then(response => response.json())
+        .then(states => {
+          stateSelect.innerHTML = '<option value="">Select State</option>';
+          citySelect.innerHTML = '<option value="">Select City</option>';
+          states.forEach(state => {
+            const option = document.createElement("option");
+            option.value = state.id;
+            option.textContent = state.name;
+            stateSelect.appendChild(option);
+          });
+        });
+    });
+
+    stateSelect.addEventListener("change", function() {
+      const stateId = this.value;
+      fetch(`/offshoreemployees/get_cities?state_id=${stateId}`)
+        .then(response => response.json())
+        .then(cities => {
+          citySelect.innerHTML = '<option value="">Select City</option>';
+          cities.forEach(city => {
+            const option = document.createElement("option");
+            option.value = city.id;
+            option.textContent = city.name;
+            citySelect.appendChild(option);
+          });
+        });
+    });
+  });
+</script>
