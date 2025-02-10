@@ -37,6 +37,7 @@
 
 - [ ] Implementing User Authentication (Devise or custom solution)
 - [x] **JWT Authentication** (Implementing token-based authentication for APIs)
+      https://www.youtube.com/watch?v=MWuRHY5XF40&list=PL6SEI86zExmvGeaquocN_umlbhJVhijqG
 - [ ] Authorization with Pundit or CanCanCan
 - [ ] Role-based Access Control (RBAC)
 
@@ -123,3 +124,12 @@
 - [ ] Rails Debugging: Using `byebug` and `pry` for debugging code
 - [ ] Database Schema: Understanding and managing your database schema with `db:schema`
 - [ ] Ruby Gems: Using popular gems like `Devise`, `Kaminari`, `Pundit`, `Sidekiq`, etc.
+
+## Useful Gems
+
+gem 'rack-mini-profiler'
+
+## Gem from this project
+
+gem 'rails-ujs'
+gem 'toastr-rails'

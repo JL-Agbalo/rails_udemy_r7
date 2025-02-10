@@ -53,4 +53,6 @@ Rails.application.routes.draw do
       get 'get_cities'
     end
   end
+
+  get "shoppingcart/index" => "shoppingcart#index"
 end

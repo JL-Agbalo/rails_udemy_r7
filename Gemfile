@@ -43,6 +43,8 @@ gem 'httparty'
 
 # jQuery for Rails
 gem "jquery-rails"
+gem 'rails-ujs'
+gem 'toastr-rails'
 
 # SQL Server adapter for ActiveRecord
 # gem "tiny_tds"
