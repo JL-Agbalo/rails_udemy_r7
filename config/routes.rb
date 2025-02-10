@@ -54,5 +54,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get "shoppingcart/index" => "shoppingcart#index"
+  get "/shoppingcart/index" => "shoppingcart#index"
+  get "/shoppingcart/product_list" => "shoppingcart#product_list"
 end

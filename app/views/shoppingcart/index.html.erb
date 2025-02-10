@@ -1,16 +1,40 @@
 <div class="container-fluid">
-  <header class="bg-danger text-white text-center p-2">
-    <h2><span class="bi bi-cart"></span> Shopping Cart Demo</h2>
+  <!-- Header -->
+  <header class="bg-danger text-white text-center py-3">
+    <h2 class="mb-0"><span class="bi bi-cart"></span> Shopping Cart Demo</h2>
   </header>
 
-  <div class="row mt-2">
-    <div class="col-md-2">
-      <div class="">
-        <label for="category" class="form-label">Select a Category</label>
-        <div>
-          <%= select_tag(:category, options_for_select(@categories), class: 'form-control') %>
-        </div>
+  <div class="row mt-3">
+    <!-- Sidebar: Category Selection -->
+    <div class="col-md-3 col-lg-2">
+      <div class="p-3 bg-light rounded shadow-sm">
+        <label for="category" class="form-label fw-bold">Select a Category</label>
+        <%= select_tag(:category, options_for_select(@categories), class: 'form-select category-dropdown') %>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="col-md-6">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3" id="product-list">
+        <%= render partial: 'product', collection: @products %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const categoryDropdown = document.querySelector(".category-dropdown");
+
+    categoryDropdown.addEventListener("change", function() {
+      const categoryName = this.value;
+
+      fetch(`/shoppingcart/product_list?category=${categoryName}`)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById("product-list").innerHTML = html;
+        })
+        .catch(error => console.error("Error fetching products:", error));
+    });
+  });
+</script>
