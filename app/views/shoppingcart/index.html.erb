@@ -18,6 +18,11 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3" id="product-list">
         <%= render partial: 'product', collection: @products %>
       </div>
+      <div id="loading-spinner" class="text-center my-3" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -25,16 +30,30 @@
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const categoryDropdown = document.querySelector(".category-dropdown");
+    const productList = document.getElementById("product-list");
+    const loadingSpinner = document.getElementById("loading-spinner");
 
     categoryDropdown.addEventListener("change", function() {
       const categoryName = this.value;
 
+      // Show the loading spinner
+      loadingSpinner.style.display = "block";
+      productList.style.display = "none";
+
       fetch(`/shoppingcart/product_list?category=${categoryName}`)
         .then(response => response.text())
         .then(html => {
-          document.getElementById("product-list").innerHTML = html;
+          productList.innerHTML = html;
+          // Hide the loading spinner
+          loadingSpinner.style.display = "none";
+          productList.style.display = "flex";
         })
-        .catch(error => console.error("Error fetching products:", error));
+        .catch(error => {
+          console.error("Error fetching products:", error);
+          // Hide the loading spinner in case of error
+          loadingSpinner.style.display = "none";
+          productList.style.display = "flex";
+        });
     });
   });
 </script>
