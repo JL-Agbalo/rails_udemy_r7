@@ -5,20 +5,16 @@
         <%= image_tag product["image"], class: "card-img-top img-fluid p-3", style: "height: 200px; object-fit: contain;" %>
       </div>
       <div class="card-body d-flex flex-column">
-        <h5 class="card-title text-truncate">
-          <i class="bi bi-tag-fill text-primary"></i> <%= product["title"] %>
-        </h5>
+        <h5 class="card-title text-truncate"><%= product["title"] %></h5>
+        <p class="card-text"><strong>Price:</strong> $<%= product["price"] %></p>
         <p class="card-text">
-          <i class="bi bi-cash-coin text-success"></i> <strong>Price:</strong> $<%= product["price"] %>
-        </p>
-        <p class="card-text">
-          <i class="bi bi-star-fill text-warning"></i> <strong>Rating:</strong> <%= product["rating"]["rate"] %> ⭐
+          <strong>Rating:</strong> <%= product["rating"]["rate"] %> ⭐
           (<%= product["rating"]["count"] %> reviews)
         </p>
         <div class="mt-auto text-center">
-          <button class="btn btn-primary w-100 add-to-cart" data-title="<%= product["title"] %>">
-            <i class="bi bi-cart-plus"></i> Add to Cart
-          </button>
+            <%= link_to add_cart_path(product['id']), class: 'btn btn-danger w-100', remote: true do %>
+              <span class="bi bi-cart4"></span> Add to Cart
+            <% end %>
         </div>
       </div>
     </div>

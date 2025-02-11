@@ -12,7 +12,10 @@ class ShoppingcartController < ApplicationController
       @products = get_response("https://fakestoreapi.com/products/category/#{ERB::Util.url_encode(category_name)}")
     end
     render partial: 'product', collection: @products, as: :product
+  end
 
+  def add_cart
+    @product = get_response("https://fakestoreapi.com/products/#{params[:product_id]}")
   end
 
   private
