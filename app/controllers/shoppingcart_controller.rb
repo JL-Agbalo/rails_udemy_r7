@@ -16,6 +16,10 @@ class ShoppingcartController < ApplicationController
 
   def add_cart
     @product = get_response("https://fakestoreapi.com/products/#{params[:product_id]}")
+  
+    # respond_to do |format|
+    #   format.js 
+    # end
   end
 
   private
