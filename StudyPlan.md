@@ -135,3 +135,5 @@ gem 'rails-ujs'
 gem 'toastr-rails'
 gem 'kaminari'
 https://github.com/kaminari/kaminari
+gem 'faker'
+gem 'kaminari-bootstrap', '~> 4.0.0'

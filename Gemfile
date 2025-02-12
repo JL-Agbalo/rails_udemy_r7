@@ -78,3 +78,5 @@ end
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'kaminari'
+gem 'faker'
+gem 'kaminari-bootstrap', '~> 3.0.1'
