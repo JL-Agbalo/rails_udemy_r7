@@ -22,6 +22,10 @@ class ShoppingcartController < ApplicationController
     # end
   end
 
+  def remove_cart
+  
+  end
+
   private
   def get_response(url)
     response = HTTParty.get(url)
