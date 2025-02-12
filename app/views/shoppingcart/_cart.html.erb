@@ -15,6 +15,11 @@
       <button class="btn btn-danger btn-plus px-2 ms-2">+</button>
     </div>
   </div></td>
+  <td>
+    <%= link_to remove_cart_path(product['id']), method: :delete, class: 'btn btn-danger' do %>
+      <i class="bi bi-trash-fill"></i>
+    <% end %>
+  </td>
 </tr>
 
 <% end %>

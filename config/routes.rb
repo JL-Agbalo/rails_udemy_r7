@@ -57,4 +57,5 @@ Rails.application.routes.draw do
   get "/shoppingcart/index" => "shoppingcart#index"
   get "/shoppingcart/product_list" => "shoppingcart#product_list"
   get "/shoppingcart/:product_id/add_cart" => "shoppingcart#add_cart", as: :add_cart
+  get "/shoppingcart/:product_id/remove_cart" => "shoppingcart#remove_cart", as: :remove_cart
 end

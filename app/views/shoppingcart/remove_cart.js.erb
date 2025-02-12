@@ -1,0 +1,5 @@
+$("product-<%= @product.id %>").remove();
+var count = $(".cart-table tr").length;
+$(".cart-count").text(count);
+toastr.success("Product removed from cart");
+updateTotalPrice();

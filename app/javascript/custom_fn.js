@@ -13,6 +13,32 @@ function addQtyBtn() {
   });
 }
 
+function minusQtyBtn() {
+  $(".btn-minus").on("click", function (e) {});
+  var qtyElement = $(this).closest("tr").find(".qty");
+  var qty = parseInt(qtyElement.val());
+  if (qty == 1) {
+    toastr.error("Quantity cannot be less than 1");
+  } else {
+    qtyElement.val(qty - 1);
+  }
+  updatePrice(this);
+  e.stopImmediatePropagation();
+}
+
+function qtyTextbox() {
+  $("qty").on("keyup", function (e) {
+    var qtyElement = $(this).closest("tr").find(".qty");
+    var qty = parseInt(qtyElement.val());
+    if (qty == 0) {
+      toastr.error("Quantity cannot be less than 1");
+      qtyElement.val(1);
+    }
+    updatePrice(this);
+    e.stopImmediatePropagation();
+  });
+}
+
 function updatePrice(element) {
   var closest = $(element).closest("tr");
   var price = parseFloat(closest.find(".product-price").val());
