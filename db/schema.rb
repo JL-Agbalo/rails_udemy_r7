@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_06_141022) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_12_140114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_141022) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "allowancetypes", force: :cascade do |t|
+    t.string "name"
+    t.integer "percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -72,6 +79,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_141022) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employeeallowances", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "allowancetype_id", null: false
+    t.bigint "employeesalary_id", null: false
+    t.index ["allowancetype_id"], name: "index_employeeallowances_on_allowancetype_id"
+    t.index ["employeesalary_id"], name: "index_employeeallowances_on_employeesalary_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -88,6 +104,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_141022) do
     t.bigint "department_id", null: false
     t.index ["country_id"], name: "index_employees_on_country_id"
     t.index ["department_id"], name: "index_employees_on_department_id"
+  end
+
+  create_table "employeesalaries", force: :cascade do |t|
+    t.integer "salary"
+    t.integer "netallowanceamount"
+    t.integer "netsalary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "offshoreemployees", force: :cascade do |t|
@@ -130,6 +154,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_141022) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cities", "states"
+  add_foreign_key "employeeallowances", "allowancetypes"
+  add_foreign_key "employeeallowances", "employeesalaries"
   add_foreign_key "employees", "countries"
   add_foreign_key "employees", "departments"
   add_foreign_key "offshoreemployees", "cities"

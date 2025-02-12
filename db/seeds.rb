@@ -111,29 +111,50 @@
 
 require 'faker'
 
-# Ensure the departments exist
-departments = ['HR', 'Engineering', 'Sales', 'Marketing', 'Finance']
-departments.each do |department|
-  Department.find_or_create_by(name: department)
-end
+# # Ensure the departments exist
+# departments = ['HR', 'Engineering', 'Sales', 'Marketing', 'Finance']
+# departments.each do |department|
+#   Department.find_or_create_by(name: department)
+# end
 
 # Create 50 employees
-50.times do
-  Employee.create(
-    firstname: Faker::Name.first_name,
-    lastname: Faker::Name.last_name,
-    phone_number: Faker::PhoneNumber.phone_number,
-    haspassport: [true, false].sample,
-    salary: Faker::Number.between(from: 30000, to: 120000),
-    notes: Faker::Lorem.sentence,
-    birthdate: Faker::Date.birthday(min_age: 18, max_age: 65),
-    hiredate: Faker::Date.between(from: 5.years.ago, to: Date.today),
-    gender: ['Male', 'Female'].sample,
-    country_id: Country.pluck(:id).sample,
-    department_id: Department.pluck(:id).sample
-  )
+# 50.times do
+#   Employee.create(
+#     firstname: Faker::Name.first_name,
+#     lastname: Faker::Name.last_name,
+#     phone_number: Faker::PhoneNumber.phone_number,
+#     haspassport: [true, false].sample,
+#     salary: Faker::Number.between(from: 30000, to: 120000),
+#     notes: Faker::Lorem.sentence,
+#     birthdate: Faker::Date.birthday(min_age: 18, max_age: 65),
+#     hiredate: Faker::Date.between(from: 5.years.ago, to: Date.today),
+#     gender: ['Male', 'Female'].sample,
+#     country_id: Country.pluck(:id).sample,
+#     department_id: Department.pluck(:id).sample
+#   )
+# end
+
+# puts "50 employees created!"
+
+
+
+
+# Create Allowancetypes
+allowancetypes = [
+  { name: 'HRA', percentage: 10 },
+  { name: 'CA', percentage: 5 },
+  { name: 'MA', percentage: 8 },
+  { name: 'DA', percentage: 7 },
+  { name: 'FA', percentage: 6 },
+  { name: 'TA', percentage: 4 },
+  { name: 'SA', percentage: 3 },
+  { name: 'PA', percentage: 2 },
+  { name: 'LA', percentage: 9 },
+  { name: 'BA', percentage: 1 }
+]
+
+allowancetypes.each do |allowancetype|
+  Allowancetype.find_or_create_by(name: allowancetype[:name], percentage: allowancetype[:percentage])
 end
 
-puts "50 employees created!"
-
-
+puts "10 Allowancetypes created!"
