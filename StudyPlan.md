@@ -133,3 +133,5 @@ gem 'rack-mini-profiler'
 
 gem 'rails-ujs'
 gem 'toastr-rails'
+gem 'kaminari'
+https://github.com/kaminari/kaminari
