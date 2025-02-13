@@ -63,4 +63,7 @@ Rails.application.routes.draw do
 
   get 'radio_index', to: 'allowances#radio_index'
   post 'radio_create', to: 'allowances#radio_create'
+
+  get 'check_box_index', to: 'allowances#check_box_index'
+  post 'check_box_create', to: 'allowances#check_box_create'
 end

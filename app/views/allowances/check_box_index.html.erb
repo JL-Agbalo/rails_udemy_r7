@@ -1,0 +1,96 @@
+<div class="container mt-5">
+  <h1 class="text-center">Working with Check Boxes</h1>
+
+  <%= form_with model: @employee_salary, url: check_box_create_path, local: true, class: 'form-horizontal' do |f| %>
+  
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-2 control-label">
+          Salary:
+          <span class="star">*</span>
+        </label>
+        <div class="col-sm-10">
+          <%= f.number_field :salary, placeholder: 'Enter Salary', class: 'form-control', autofocus: true, id: 'salaryInput' %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="col-form-label col-sm-2 pt-0 pl-0">Allowance Types:</legend>
+      <% @allowance_types.each do |allowance_type| %>
+        <div class="form-group row">
+          <div class="col-sm-10 offset-sm-2">
+            <div class="form-check">
+              <%= check_box_tag "allowancetype_ids[]", allowance_type.id, false, data: { percentage: allowance_type.percentage }, class: 'form-check-input', id: "allowance_type_#{allowance_type.id}" %>
+              <label for="allowance_type_<%= allowance_type.id %>" class="form-check-label">
+                <%= "#{allowance_type.name} (#{allowance_type.percentage}%)" %>
+              </label>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-2 control-label">
+          Allowance Amount: <span class="star">*</span>
+        </label>
+        <div class="col-sm-10">
+          <%= f.number_field :netallowanceamount, class: 'form-control', readonly: true, id: 'allowanceAmount' %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-2 control-label">
+          Net Salary: <span class="star">*</span>
+        </label>
+        <div class="col-sm-10">
+          <%= f.number_field :netsalary, class: 'form-control', readonly: true, id: 'netSalary' %>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const salaryInput = document.getElementById('salaryInput');
+    const allowanceAmount = document.getElementById('allowanceAmount');
+    const netSalary = document.getElementById('netSalary');
+    const checkBoxes = document.querySelectorAll('input[type="checkbox"][name="allowancetype_ids[]"]');
+
+    function calculate() {
+      const salary = parseFloat(salaryInput.value) || 0;
+      let totalAllowance = 0;
+
+      checkBoxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const percentage = parseFloat(checkbox.dataset.percentage) || 0;
+          totalAllowance += (salary * percentage) / 100;
+        }
+      });
+
+      const netSalaryValue = salary + totalAllowance;
+      allowanceAmount.value = totalAllowance.toFixed(2);
+      netSalary.value = netSalaryValue.toFixed(2);
+    }
+
+    salaryInput.addEventListener('input', calculate);
+    checkBoxes.forEach(checkbox => {
+      checkbox.addEventListener('change', calculate);
+    });
+
+    // Initial calculation
+    calculate();
+  });
+</script>
