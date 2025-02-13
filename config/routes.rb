@@ -60,4 +60,7 @@ Rails.application.routes.draw do
   get "/shoppingcart/:product_id/remove_cart" => "shoppingcart#remove_cart", as: :remove_cart
 
   resources :employeespaginations, only: [:index]
+
+  get 'radio_index', to: 'allowances#radio_index'
+  post 'radio_create', to: 'allowances#radio_create'
 end
