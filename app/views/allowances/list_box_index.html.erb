@@ -1,0 +1,138 @@
+<div class="container mt-5">
+  <h1 class="text-center">Working with List Box</h1>
+
+  <%= form_with model: @employee_salary, url: list_box_create_path, local: true, class: "form-horizontal", data: { controller: 'listbox' } do |f| %>
+  
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-2 control-label">
+          Salary:
+          <span class="star">*</span>
+        </label>
+        <div class="col-sm-10">
+          <%= f.number_field :salary, placeholder: "Enter Salary", class: "form-control", autofocus: true, id: "salaryInput" %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-4 control-label">
+          Available Allowances:
+        </label>
+        <div class="col-sm-4">
+          <label for="" class="col-sm-4 control-label">
+            Allowances Entitled For:
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <% options = @allowance_types.map { |model| [model.name, model.id, { "data-percentage": model.percentage }] } %>
+          <%= select_tag "type_ids[]", options_for_select(options), class: 'form-control', multiple: true, data: { "listbox-target": "leftSelect", action: "change->listbox#changeRightButton" } %>
+        </div>
+        <div class="col-sm-4 justify-content-around d-flex flex-column text-center">
+          <div>
+            <button type="button" class="btn btn-outline-primary" data-action="click->listbox#moveRight">></button>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline-primary" data-action="click->listbox#moveLeft"><</button>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline-primary" data-action="click->listbox#moveAllRight">>></button>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline-primary" data-action="click->listbox#moveAllLeft"><<</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <%= select_tag "allowancetype_ids[]", "", class: 'form-control', multiple: true, data: { "listbox-target": "rightSelect", action: "change->listbox#changeLeftButton" } %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-2 control-label">
+          Net Allowance Amount:
+          <span class="star">*</span>
+        </label>
+        <div class="col-sm-10">
+          <%= f.number_field :netallowanceamount, readonly: true, class: 'form-control', data: { "listbox-target": "allowanceSalary" } %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group row">
+        <label for="" class="col-sm-2 control-label">
+          Net Salary:
+          <span class="star">*</span>
+        </label>
+        <div class="col-sm-10">
+          <%= f.number_field :netsalary, class: 'form-control', readonly: true, data: { "listbox-target": "netSalary" } %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </fieldset>
+
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const salaryInput = document.getElementById('salaryInput');
+    const allowanceAmount = document.querySelector('[data-listbox-target="allowanceSalary"]');
+    const netSalary = document.querySelector('[data-listbox-target="netSalary"]');
+    const leftSelect = document.querySelector('[data-listbox-target="leftSelect"]');
+    const rightSelect = document.querySelector('[data-listbox-target="rightSelect"]');
+
+    function calculate() {
+      const salary = parseFloat(salaryInput.value) || 0;
+      let totalAllowance = 0;
+
+      Array.from(rightSelect.options).forEach(option => {
+        const percentage = parseFloat(option.dataset.percentage) || 0;
+        totalAllowance += (salary * percentage) / 100;
+      });
+
+      const netSalaryValue = salary + totalAllowance;
+      allowanceAmount.value = totalAllowance.toFixed(2);
+      netSalary.value = netSalaryValue.toFixed(2);
+    }
+
+    salaryInput.addEventListener('input', calculate);
+    leftSelect.addEventListener('change', calculate);
+    rightSelect.addEventListener('change', calculate);
+
+    function moveOptions(source, target) {
+      Array.from(source.selectedOptions).forEach(option => {
+        target.appendChild(option);
+      });
+      calculate();
+    }
+
+    document.querySelector('[data-action="click->listbox#moveRight"]').addEventListener('click', () => moveOptions(leftSelect, rightSelect));
+    document.querySelector('[data-action="click->listbox#moveLeft"]').addEventListener('click', () => moveOptions(rightSelect, leftSelect));
+    document.querySelector('[data-action="click->listbox#moveAllRight"]').addEventListener('click', () => {
+      Array.from(leftSelect.options).forEach(option => {
+        rightSelect.appendChild(option);
+      });
+      calculate();
+    });
+    document.querySelector('[data-action="click->listbox#moveAllLeft"]').addEventListener('click', () => {
+      Array.from(rightSelect.options).forEach(option => {
+        leftSelect.appendChild(option);
+      });
+      calculate();
+    });
+  });
+</script>
