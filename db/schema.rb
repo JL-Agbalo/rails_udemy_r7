@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_15_151728) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_16_043930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.decimal "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -142,6 +149,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_15_151728) do
     t.index ["country_id"], name: "index_states_on_country_id"
   end
 
+  create_table "transfers", force: :cascade do |t|
+    t.decimal "amount"
+    t.bigint "from_account_id", null: false
+    t.bigint "to_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_account_id"], name: "index_transfers_on_from_account_id"
+    t.index ["to_account_id"], name: "index_transfers_on_to_account_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
@@ -169,4 +186,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_15_151728) do
   add_foreign_key "offshoreemployees", "countries"
   add_foreign_key "offshoreemployees", "states"
   add_foreign_key "states", "countries"
+  add_foreign_key "transfers", "accounts", column: "from_account_id"
+  add_foreign_key "transfers", "accounts", column: "to_account_id"
 end
