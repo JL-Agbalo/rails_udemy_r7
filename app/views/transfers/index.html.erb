@@ -32,13 +32,7 @@
           >
         </td>
         <td><%= number_to_currency(transfer.amount) %></td>
-        <td>
-          <%= link_to 'Show', transfer_path(transfer), class: 'btn btn-info
-          btn-sm' %> <%= link_to 'Edit', edit_transfer_path(transfer), class:
-          'btn btn-warning btn-sm' %> <%= link_to 'Delete',
-          transfer_path(transfer), method: :delete, data: { confirm: 'Are you
-          sure?' }, class: 'btn btn-danger btn-sm' %>
-        </td>
+        <td></td>
       </tr>
       <% end %>
     </tbody>
