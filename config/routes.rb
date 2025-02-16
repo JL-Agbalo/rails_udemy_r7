@@ -73,4 +73,8 @@ Rails.application.routes.draw do
   resources :employeefilters, only: [:index]
 
   resources :transfers, except: [:show, :edit, :update]
+  resources :belfastemployees, only: [:index]
+  root "belfastemployees#index"
+
+  get "belfastemployees/export_as", to: "belfastemployees#export_as", as: :export_as
 end
