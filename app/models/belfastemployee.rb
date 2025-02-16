@@ -1,0 +1,2 @@
+class Belfastemployee < ApplicationRecord
+end

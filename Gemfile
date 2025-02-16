@@ -80,3 +80,22 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'faker'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+
+### Start ###
+# gem "tiny_tds"
+# gem "activerecord-sqlserver-adapter"
+
+#For PDF
+gem 'prawn'
+gem 'prawn-table'
+
+#For CSV
+gem 'csv'
+
+#For XLS
+gem 'spreadsheet'
+
+#For Docx
+gem 'caracal'
+
+### END ###

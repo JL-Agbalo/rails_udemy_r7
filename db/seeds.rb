@@ -30,12 +30,22 @@ require 'faker'
 # end
 
 
-# Create Accounts
+# Create Belfast Employee
 15.times do
-  Account.create(
-    name: Faker::Company.name,
-    balance: Faker::Number.decimal(l_digits: 5, r_digits: 2)
+  Belfastemployee.create(
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    salary: Faker::Number.between(from: 30000, to: 100000),
+    notes: Faker::Lorem.sentence,
   )
 end
 
-puts "Seeding completed! Added #{Country.count} countries, #{Department.count} departments, #{Employee.count} employees, and #{Account.count} accounts."
+
+# 15.times do
+#   Account.create(
+  #     name: Faker::Company.name,
+  #     balance: Faker::Number.decimal(l_digits: 5, r_digits: 2)
+  #   )
+  # end
+
+  # puts "Seeding completed! Added #{Country.count} countries, #{Department.count} departments, #{Employee.count} employees, and #{Account.count} accounts."
