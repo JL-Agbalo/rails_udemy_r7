@@ -71,4 +71,6 @@ Rails.application.routes.draw do
   post 'list_box_create', to: 'allowances#list_box_create'
 
   resources :employeefilters, only: [:index]
+
+  resources :transfers, except: [:show, :edit, :update]
 end

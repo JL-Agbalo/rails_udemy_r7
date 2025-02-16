@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <%= form_for @transfer do |f| %>
+  <fieldset>
+    <div class="form-group row">
+      <label for="from_account_id" class="col-sm-2 col-form-label">
+        From Account:
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-10">
+        <%= f.select :from_account_id,
+        options_from_collection_for_select(select_account, 'id', 'name',
+        f.object.from_account_id), { include_blank: "Select Account" }, class:
+        "form-control" %>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="form-group row">
+      <label for="to_account_id" class="col-sm-2 col-form-label">
+        To Account:
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-10">
+        <%= f.select :to_account_id,
+        options_from_collection_for_select(select_account, 'id', 'name',
+        f.object.to_account_id), { include_blank: "Select Account" }, class:
+        "form-control", autofocus: true %>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="form-group row">
+      <label for="amount" class="col-sm-2 col-form-label">
+        Amount:
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-10">
+        <%= f.number_field :amount, placeholder: "Enter Amount", autofocus:
+        true, class: "form-control" %>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <%= f.submit f.object.new_record? ? "Insert Record" : "Update Record",
+      class: "btn btn-primary" %> <%= link_to 'Back To List', transfers_path,
+      class: "btn btn-secondary ml-2" %>
+    </div>
+  </div>
+  <% end %>
+</div>

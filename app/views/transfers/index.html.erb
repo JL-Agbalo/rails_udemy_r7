@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Listing Transfers</h1>
+  <div class="text-right mb-3">
+    <a href="<%= new_transfer_path %>" class="btn btn-primary">New Transfer</a>
+  </div>
+
+  <% if @transfers.present? %>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>From Account</th>
+        <th>To Account</th>
+        <th>Transfer Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transfers.each do |transfer| %>
+      <tr>
+        <td><%= transfer.id %></td>
+        <td>
+          <%= transfer.from_account.name %><br />
+          <small
+            >Balance After Transfer: <%= transfer.from_account.balance %></small
+          >
+        </td>
+        <td>
+          <%= transfer.to_account.name %><br />
+          <small
+            >Balance After Transfer: <%= transfer.to_account.balance %></small
+          >
+        </td>
+        <td><%= number_to_currency(transfer.amount) %></td>
+        <td>
+          <%= link_to 'Show', transfer_path(transfer), class: 'btn btn-info
+          btn-sm' %> <%= link_to 'Edit', edit_transfer_path(transfer), class:
+          'btn btn-warning btn-sm' %> <%= link_to 'Delete',
+          transfer_path(transfer), method: :delete, data: { confirm: 'Are you
+          sure?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="alert alert-warning text-center" role="alert">
+    No transfers found.
+  </div>
+  <% end %>
+</div>
