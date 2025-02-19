@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_16_082120) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_19_121949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,6 +111,20 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_16_082120) do
     t.index ["employeesalary_id"], name: "index_employeeallowances_on_employeesalary_id"
   end
 
+  create_table "employeecertificates", force: :cascade do |t|
+    t.bigint "employeeinfo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employeeinfo_id"], name: "index_employeecertificates_on_employeeinfo_id"
+  end
+
+  create_table "employeeinfos", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -189,6 +203,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_16_082120) do
   add_foreign_key "cities", "states"
   add_foreign_key "employeeallowances", "allowancetypes"
   add_foreign_key "employeeallowances", "employeesalaries"
+  add_foreign_key "employeecertificates", "employeeinfos"
   add_foreign_key "employees", "countries"
   add_foreign_key "employees", "departments"
   add_foreign_key "offshoreemployees", "cities"

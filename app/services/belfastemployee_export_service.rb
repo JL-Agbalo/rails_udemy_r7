@@ -54,7 +54,6 @@ class BelfastemployeeExportService
   end
 
   def to_docx
-    # TODO FILE CORRUPTED
     temp_file = Tempfile.new(['employee_list', '.docx'])
     Caracal::Document.save(temp_file.path) do |doc|
       doc.h1 'Employee List'
