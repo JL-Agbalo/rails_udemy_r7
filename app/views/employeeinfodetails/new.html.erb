@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-4">
+      <%= form_for @employee, url: employeeinfodetails_path(@employee), html: {
+      multipart: true }, method: :post do |f| %>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstname" class="form-label">First Name:</label>
+          <%= f.text_field :firstname, class: 'form-control' %>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastname" class="form-label">Last Name:</label>
+          <%= f.text_field :lastname, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cv" class="form-label">CV File:</label>
+          <%= f.file_field :cv, class: 'form-control' %>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="photo" class="form-label">Photo File:</label>
+          <%= f.file_field :photo, class: 'form-control', accept: 'image/png, image/jpeg, image/jpg' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="pan_card" class="form-label">Pan Card pic blob:</label>
+          <%= f.file_field :pan_card, class: 'form-control', accept: 'image/png, image/jpeg, image/jpg' %>
+        </div>
+        <div class="col-md-6 mb-2">
+          <h5>Certificates</h5>
+          <%= link_to 'Add Certificate', 'javascript:void(0)', class: 'btn
+          btn-primary btn-sm add-certificate' %>
+        </div>
+      </div>
+      <div class="certificate_list mb-3"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.submit 'Submit', class: 'btn btn-primary submit-emp-form' %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to 'Back to Employee Path', employeeinfodetails_path, class:
+          'btn btn-secondary' %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="certificate_fields d-none">
+  <div class="certi-box mb-2">
+    <div class="col-8">
+      <%= file_field_tag 'employee[employeecertificates_attributes][][certificate]', class:
+      'form-control certificate-file' %>
+    </div>
+    <div class="col-4">
+      <%= link_to "javascript:void(0)", class: 'btn btn-danger btn-sm
+      remove-certi' do %>
+      <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    addCertificate();
+    submitEmployeeForm();
+  });
+
+  function addCertificate() {
+    const maxCertificates = 10;
+    const certificateList = document.querySelector(".certificate_list");
+    const addCertificateButton = document.querySelector(".add-certificate");
+
+    addCertificateButton.addEventListener("click", function () {
+      if (certificateList.children.length < maxCertificates) {
+        const newCertificate = document
+          .querySelector(".certificate_fields")
+          .cloneNode(true);
+        newCertificate.classList.remove("d-none");
+        certificateList.appendChild(newCertificate);
+      } else {
+        alert("Maximum of 10 certificates only allowed");
+      }
+    });
+
+    certificateList.addEventListener("click", function (event) {
+      if (event.target.classList.contains("remove-certi")) {
+        event.target.closest(".certi-box").remove();
+      }
+    });
+  }
+
+  function submitEmployeeForm() {
+    const form = document.querySelector(".submit-emp-form").closest("form");
+    form.addEventListener("submit", function (event) {
+      const certificateList = document.querySelector(".certificate_list");
+      if (certificateList.children.length === 0) {
+        alert("You must add at least one certificate.");
+        event.preventDefault();
+        return;
+      }
+
+      const certificates = certificateList.querySelectorAll('.certificate-file');
+      for (let certificate of certificates) {
+        if (!certificate.value) {
+          alert("Certificate can't be blank.");
+          event.preventDefault();
+          return;
+        }
+      }
+
+      event.preventDefault();
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          window.location.href = data.redirect_url;
+        } else {
+          alert("There was an error submitting the form.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("There was an error submitting the form.");
+      });
+    });
+  }
+</script>
