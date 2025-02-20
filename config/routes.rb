@@ -82,4 +82,5 @@ Rails.application.routes.draw do
   # root "employeeinfodetails#index"
 
   root "charts#index"
+  get "charts/fetch_sales_data" => "charts#fetch_sales_data"
 end

@@ -13,4 +13,8 @@ class ChartsController < ApplicationController
       'Area Chart': 'area'
     }
   end
+
+  def fetch_sales_data
+    render json: { months: Sale.pluck(:monthname), amount: Sale.pluck(:amount) }
+  end
 end
