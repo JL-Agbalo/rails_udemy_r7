@@ -81,6 +81,10 @@ Rails.application.routes.draw do
   resources :employeeinfodetails, only: [:index, :show, :new, :create]
   # root "employeeinfodetails#index"
 
-  root "charts#index"
+  # root "charts#index"
   get "charts/fetch_sales_data" => "charts#fetch_sales_data"
+
+  get "home" => "employees#home"
+  get "session_test" => "employees#session_test"
+  get "readsessiondata" => "employees#readsessiondata"
 end

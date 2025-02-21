@@ -99,3 +99,6 @@ gem 'spreadsheet'
 gem 'caracal'
 
 ### END ###
+
+
+gem 'activerecord-session_store'
