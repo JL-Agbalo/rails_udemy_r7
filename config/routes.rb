@@ -87,4 +87,9 @@ Rails.application.routes.draw do
   get "home" => "employees#home"
   get "session_test" => "employees#session_test"
   get "readsessiondata" => "employees#readsessiondata"
+
+  resources :employees, only: [:index, :show]
+  root "employees#emp_idx"
+  get "home" => "employees#home"
+
 end

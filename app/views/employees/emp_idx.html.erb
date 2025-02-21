@@ -1,0 +1,23 @@
+<h1>Employee Index</h1>
+<p>Plain Text Cookie: <%= cookies[:emp_name] %></p>
+<p>Expiring Cookie: <%= cookies[:exp_kookies] %></p>
+<p>Signed Cookie: <%= cookies.signed[:user_id] %></p>
+<p>Encrypted Cookie: <%= cookies.encrypted[:credit_card] %></p>
+
+<div>
+  The first part is a Base64 encoded JSON object containing the value we stored
+  and the second part is a cryptographically generated digest. When Rails
+  receives a signed cookie, it compares the value to the digest and if they
+  don't match, the cookie value will be nil. This is why users cannot modify a
+  signed cookie.
+</div>
+
+<div>
+  An encrypted cookie is divided into 3 parts separated by --, rather than two
+  parts like a signed cookie. The first part is the encrypted data. The second
+  part is called an initialization vector, which is a random input to the
+  encryption algorithm. And the third part is an authentication tag, which is
+  similar to the digest of a signed cookie. All three parts are base64 encoded.
+</div>
+
+<%= link_to 'Home', home_path %>

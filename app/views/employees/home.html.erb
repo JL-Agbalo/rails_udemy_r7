@@ -1,0 +1,11 @@
+<h1>Employee Index</h1>
+<p>Plain Text Cookie: <%= cookies[:emp_name] %></p>
+<p>Expiring Cookie: <%= cookies[:exp_kookies] %></p>
+<p>Signed Cookie: <%= cookies.signed[:user_id] %></p>
+<p>Encrypted Cookie: <%= cookies.encrypted[:credit_card] %></p>
+
+<!-- This Delete only the cookie in application -->
+<% cookies.delete(:emp_name) %>
+
+<!-- This will delete all the cookies in the application -->
+<% cookies.clear %>
