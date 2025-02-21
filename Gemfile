@@ -102,3 +102,6 @@ gem 'caracal'
 
 
 gem 'activerecord-session_store'
+
+gem 'devise'
+gem 'pundit'

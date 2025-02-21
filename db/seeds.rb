@@ -51,12 +51,20 @@ require 'faker'
   # puts "Seeding completed! Added #{Country.count} countries, #{Department.count} departments, #{Employee.count} employees, and #{Account.count} accounts."
 
   # Create sales for each month from January to December
-  months = %w[January February March April May June July August September October November December]
-  months.each do |month|
-    Sale.create(
-      monthname: month,
-      amount: Faker::Number.between(from: 1000, to: 99999)
-    )
-  end
+  # months = %w[January February March April May June July August September October November December]
+  # months.each do |month|
+  #   Sale.create(
+  #     monthname: month,
+  #     amount: Faker::Number.between(from: 1000, to: 99999)
+  #   )
+  # end
 
-  puts "Seeding completed! Added #{Country.count} countries, #{Department.count} departments, #{Employee.count} employees, #{Account.count} accounts, and #{Sale.count} sales."
+  # puts "Seeding completed! Added #{Country.count} countries, #{Department.count} departments, #{Employee.count} employees, #{Account.count} accounts, and #{Sale.count} sales."
+
+  # Role.create(name: "Customer")
+  # Role.create(name: "SuperUser")
+
+  Admin.create(email: "admin@gmail.com", password: "password", username: "admin",
+   first_name: "Admin", last_name: "User", admin_type: 0, role_id: 2)
+  # 0 Super User
+  # 1 Normal User
