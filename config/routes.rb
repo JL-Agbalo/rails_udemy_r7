@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { session: 'admins/sessions', registrations: 'admins/registrations' }
+  devise_for :admins, controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations' }
   # Sign up: admins/registrations
   # Sign in: admins/sessions
 
@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :customers, only: [:edit, :update]
   resources :dashboard, only: [:index]
   root "dashboard#index"
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -39,8 +38,7 @@ Rails.application.routes.draw do
   patch "employees/:id", to: "employees#update"
   delete "employees/:id", to: "employees#destroy"
 
-
-  resources:users 
+  resources :users 
 
   resources :singleemployeedelete, only: [:index] do
     delete 'emp_delete', on: :collection
@@ -102,6 +100,4 @@ Rails.application.routes.draw do
   resources :employees, only: [:index, :show]
   # root "employees#emp_idx"
   get "home" => "employees#home"
-
-
 end

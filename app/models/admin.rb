@@ -8,7 +8,7 @@ class Admin < ApplicationRecord
 
          belongs_to :role, optional: true
          
-         before_save :manager_role
+         before_save :manage_role
 
          def manage_role
           if self.customer?
