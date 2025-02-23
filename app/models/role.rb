@@ -1,5 +1,5 @@
 class Role < ApplicationRecord
   has_many :admins  
-  validates :name, presence: true, uniqness: true
+  validates :name, presence: true, uniqueness: true
 
 end
