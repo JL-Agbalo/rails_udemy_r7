@@ -1,0 +1,62 @@
+<% staff_url = @staff_user.new_record? ? staff_users_path :
+staff_user_path(@staff_user) %> <% method_type = @staff_user.new_record? ?
+'post' : 'put' %> <%= form_for :staff_user, url: staff_url, method:
+method_type.to_sym do |f| %>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">
+      <%= @staff_user.new_record? ? "Create" : "Update" %> Staff User
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username:</label>
+      <%= f.text_field :username, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <label for="first_name" class="form-label">First Name:</label>
+      <%= f.text_field :first_name, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name:</label>
+      <%= f.text_field :last_name, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <%= f.email_field :email, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password:</label>
+      <%= f.password_field :password, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <label for="password_confirmation" class="form-label"
+        >Password Confirmation:</label
+      >
+      <%= f.password_field :password_confirmation, class: 'form-control',
+      required: true %>
+    </div>
+
+    <div class="mb-3">
+      <label for="role_id" class="form-label">Role:</label>
+      <%= f.select :role_id, options_for_select(@roles, @staff_user.role_id),
+      {}, { class: 'form-select' } %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.submit "#{@staff_user.new_record? ? "Create" : "Update" } Staff
+      User", class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="mt-3">
+  <%= link_to 'Back to staff user list', staff_users_path, class: 'btn
+  btn-secondary' %>
+</div>
