@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   # Sign up: admins/registrations
   # Sign in: admins/sessions
 
+  get "customers/edit_customer", to: "customers#edit_customer", as: "edit_customer"
+  post "customers/manager_customer", to: "customers#manage_customer", as: "manage_customer"
   resources :roles
   resources :staff_user
   resources :customers, only: [:edit, :update]
   resources :dashboard, only: [:index]
   root "dashboard#index"
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
