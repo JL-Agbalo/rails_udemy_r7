@@ -64,7 +64,12 @@ require 'faker'
   # Role.create(name: "Customer")
   # Role.create(name: "SuperUser")
 
-  Admin.create(email: "admin@gmail.com", password: "password", username: "admin",
-   first_name: "Admin", last_name: "User", admin_type: 0, role_id: 2)
+  # Admin.create(email: "admin@gmail.com", password: "password", username: "admin",
+  #  first_name: "Admin", last_name: "User", admin_type: 0, role_id: 2)
   # 0 Super User
   # 1 Normal User
+
+  Permission.create(name: "Can add Products")
+  Permission.create(name: "Can edit Products")
+  Permission.create(name: "Can delete Products")
+  Permission.create(name: "Can View Products")
