@@ -7,8 +7,8 @@
 # - The before_action :authenticate_admin! ensures that only authenticated admins can access the actions in this controller.
 class RolesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :find_role, only: [:edit, :update, :destroy]
-
+  before_action :find_role, only: [:edit, :update, :destroy, :permissions, :store_permissions]
+  before_action :fetch_permissions, only: [:permissions]
   def index
     @roles = Role.all
   end
@@ -57,6 +57,21 @@ class RolesController < ApplicationController
       redirect_to roles_path
     end
   end
+
+  def permissions
+    @select_permission_ids = @role.permissions.ids
+  end
+
+  def fetch_permissions
+    @permissions = Permission.all
+  end
+
+  def store_permissions
+    @role.select_permissions_ids = params[:permission_ids]
+    flash[:notice] = "Permissions Updated Successfully."
+    redirect_to roles_path
+  end
+
 
   private
 

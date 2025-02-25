@@ -23,7 +23,8 @@
                   <!--Delete Role are not working  -->
                   <%= link_to 'Delete', role_path(role), method: :delete, data:
                   { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-                  %>
+                  %> <%= link_to 'Permissions', permissions_path(role), class:
+                  'btn btn-sm btn-warning' %>
                 </td>
               </tr>
               <% end %>
