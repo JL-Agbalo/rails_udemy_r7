@@ -5,19 +5,33 @@ class ProductPolicy < ApplicationPolicy
   # code, beware of possible changes to the ancestors:
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
 
-  class Scope < ApplicationPolicy::Scope
-    
-    attr_reader :admin
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
-    def def initialize(admin, record)
-      @admin  = admin
-      @record = record
-    end
-      
-  
+  def view_product?
+    # 4 Means can view Product
+    admin.super_admin? || admin.role.permissions_ids.include?(4)
+  end
 
+  attr_reader :admin
+
+  def initialize(admin, record)
+    @admin  = admin
+    @record = record
+  end
+
+  def create_product?
+    # 1 Means can add Product
+    admin.super_admin? || admin.role.permissions_ids.include?(1)
+  end
+
+  def update_product?
+    # 2 Means can update Product
+    admin.super_admin? || admin.role.permissions_ids.include?(2)
+  end
+
+  def delete_product?
+    # 3 Means can delete Product
+    admin.super_admin? || admin.role.permissions_ids.include?(3)
+  end
+
+  class Scope < ApplicationPolicy::Scope
   end
 end

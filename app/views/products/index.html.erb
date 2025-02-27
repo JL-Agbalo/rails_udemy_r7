@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Product List</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>Name</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @products.each do |product| %>
+                <tr>
+                  <td><%= product.name %></td>
+                  <td><%= product.sku %></td>
+                  <td><%= product.price %></td>
+                  <td>
+                    <% if is_authorize(current_admin, 2) %> <%= link_to 'Edit',
+                    edit_product_path(product), class: 'btn btn-sm btn-primary'
+                    %> <% end %> <% if is_authorize(current_admin, 3) %> <%=
+                    link_to 'Delete', product_path(product), method: :delete,
+                    data: { confirm: 'Are you sure?' }, class: 'btn btn-sm
+                    btn-danger' %> <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <% if is_authorize(current_admin, 1) %>
+          <div class="text-end mt-3">
+            <%= link_to 'New Product', new_product_path, class: 'btn btn-md
+            btn-success' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
