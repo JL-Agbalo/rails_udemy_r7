@@ -9,9 +9,9 @@
         </div>
         <div class="card-body">
           <div class="d-grid gap-2">
-            <% if admin_signed_in? && current_admin.admin_type == "super_admin"
-            %> <%= link_to "Roles", roles_path, class: "btn btn-primary" %> <%=
-            link_to "Products", products_path, class: "btn btn-primary" %> <%
+            <%= link_to "Products", products_path, class: "btn btn-primary" %>
+            <% if admin_signed_in? && !current_admin.admin_type == "super_admin"
+            %> <%= link_to "Roles", roles_path, class: "btn btn-primary" %> <%
             end %> <% if admin_signed_in? && current_admin.admin_type ==
             "super_admin" %> <%= link_to "Roles", roles_path, class: "btn
             btn-primary" %> <%= link_to "Staff Users", staff_users_path, class:

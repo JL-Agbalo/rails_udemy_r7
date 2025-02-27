@@ -7,4 +7,9 @@ class Role < ApplicationRecord
   def select_permissions_ids=(permission_ids)
     self.permissions = Permission.find(permission_ids.reject(&:blank?))
   end
+
+  def permissions_ids
+    # Assuming permissions is an association or a method that returns the permissions for the role
+    permissions.pluck(:id)
+  end
 end

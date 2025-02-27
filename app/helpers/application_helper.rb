@@ -15,3 +15,9 @@ module ApplicationHelper
         Account.all
     end
 end
+
+class Role
+    def permissions_ids
+        # implementation for permissions_ids method
+    end
+end

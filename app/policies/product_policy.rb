@@ -7,7 +7,9 @@ class ProductPolicy < ApplicationPolicy
 
   def view_product?
     # 4 Means can view Product
-    admin.super_admin? || admin.role.permissions_ids.include?(4)
+    admin.super_admin? || admin.role.permissions_ids.(true)
+    # admin.super_admin? || admin.role.permissions_ids.include?(4)
+
   end
 
   attr_reader :admin
